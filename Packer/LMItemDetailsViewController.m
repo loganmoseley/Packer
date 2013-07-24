@@ -7,6 +7,8 @@
 //
 
 #import "LMItemDetailsViewController.h"
+#import "Item.h"
+#import "Box.h"
 
 @interface LMItemDetailsViewController ()
 
@@ -26,6 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = self.item.name;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -44,24 +48,55 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *TextIdentifier = @"Text";
+    static NSString *PictureIdentifier = @"Picture";
+    NSString *identifier = indexPath.row == 0 ? PictureIdentifier : TextIdentifier;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    switch (indexPath.row) {
+            
+        case 0:
+            [(UIImageView *)[cell viewWithTag:1] setImage:self.item.image];
+            break;
+            
+        case 1:
+            cell.textLabel.text = @"name";
+            cell.detailTextLabel.text = self.item.name;
+            break;
+            
+        case 2:
+            cell.textLabel.text = @"info";
+            cell.detailTextLabel.text = self.item.info;
+            break;
+            
+        case 3:
+            cell.textLabel.text = @"packingDate";
+            cell.detailTextLabel.text = [self.item.packingDate description];
+            break;
+            
+        case 4:
+            cell.textLabel.text = @"sendingDate";
+            cell.detailTextLabel.text = [self.item.sendingDate description];
+            break;
+            
+        case 5:
+            cell.textLabel.text = @"box";
+            cell.detailTextLabel.text = self.item.box.name;
+            break;
+            
+        default:
+            break;
+    }
     
     return cell;
 }
@@ -106,6 +141,11 @@
 */
 
 #pragma mark - Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath.row == 0 ? 200 : 44;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

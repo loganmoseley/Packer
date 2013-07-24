@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LMItemDetailsViewController : UITableViewController
+@class Item, Box;
 
+@interface LMItemDetailsViewController : UITableViewController
+@property (nonatomic, weak) Item *item;
 @end

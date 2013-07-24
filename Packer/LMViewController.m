@@ -199,7 +199,9 @@
     if ([segue.identifier isEqualToString:@"Details"])
     {
         LMItemDetailsViewController *detailsController = segue.destinationViewController;
-        NSLog(@"prepareForSegue to %@", [detailsController class]);
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        Item *selectedItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        detailsController.item = selectedItem;
     }
     else if ([segue.identifier isEqualToString:@"New"])
     {
