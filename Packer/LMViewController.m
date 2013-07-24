@@ -59,6 +59,70 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Fetched results controller
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    switch (type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self.tableView reloadRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [self.tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch (type) {
+            
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [self.tableView moveSection:sectionIndex toSection:sectionIndex];
+            break;
+            
+        default:
+            break;
+    }
+}
+
+/*
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+}
+ */
+
+/*
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+}
+ */
+
 #pragma mark - Table view data source
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
@@ -104,35 +168,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BasicIdentifier forIndexPath:indexPath];
     
     Item *item = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [cell.textLabel setText:item.testName];
+    [cell.textLabel setText:item.name];
     [cell.detailTextLabel setText:item.box.name];
     [cell.imageView setImage:[item image]];
     
     return cell;
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
-{
-    switch (type) {
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-            
-        default:
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
-}
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
 }
 
 #pragma mark - Table view delegate
@@ -148,8 +188,7 @@
     {
         NSEntityDescription *itemDescription = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
         Item *item = [[Item alloc] initWithEntity:itemDescription insertIntoManagedObjectContext:self.managedObjectContext];
-        [item name];
-        [self.managedObjectContext processPendingChanges];
+        [item setName:@"Zooey Deschanel"];
     }
     
 }
