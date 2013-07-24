@@ -20,6 +20,6 @@
 @property (nonatomic, strong) NSDate * sendingDate;
 @property (nonatomic, strong) Box *box;
 
-- (UIImage *)image;
+@property (nonatomic, strong) UIImage *image;
 
 @end

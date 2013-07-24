@@ -19,9 +19,6 @@
 @dynamic sendingDate;
 @dynamic box;
 
-- (UIImage *)image
-{
-    return [UIImage imageWithData:self.picture];
-}
+@synthesize image;
 
 @end

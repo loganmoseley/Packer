@@ -10,6 +10,7 @@
 		70AA7AE917A032F90074D266 /* Box.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7AE817A032F90074D266 /* Box.m */; };
 		70AA7AEC17A032F90074D266 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7AEB17A032F90074D266 /* Item.m */; };
 		70AA7AF217A04C5A0074D266 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AA7AF017A04C530074D266 /* CoreData.framework */; };
+		70AA7AF417A061210074D266 /* zooey and kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 70AA7AF317A061210074D266 /* zooey and kitten.jpg */; };
 		70B34C9317A0245B00264262 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9217A0245B00264262 /* UIKit.framework */; };
 		70B34C9517A0245B00264262 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9417A0245B00264262 /* Foundation.framework */; };
 		70B34C9717A0245B00264262 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9617A0245B00264262 /* CoreGraphics.framework */; };
@@ -32,6 +33,7 @@
 		70AA7AEA17A032F90074D266 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		70AA7AEB17A032F90074D266 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		70AA7AF017A04C530074D266 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		70AA7AF317A061210074D266 /* zooey and kitten.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zooey and kitten.jpg"; sourceTree = "<group>"; };
 		70B34C8F17A0245B00264262 /* Packer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B34C9217A0245B00264262 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		70B34C9417A0245B00264262 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -115,6 +117,7 @@
 				70AA7AEB17A032F90074D266 /* Item.m */,
 				70AA7AE717A032F90074D266 /* Box.h */,
 				70AA7AE817A032F90074D266 /* Box.m */,
+				70AA7AF317A061210074D266 /* zooey and kitten.jpg */,
 				70B34C9917A0245B00264262 /* Supporting Files */,
 			);
 			path = Packer;
@@ -191,6 +194,7 @@
 				70B34CA717A0245B00264262 /* Default@2x.png in Resources */,
 				70B34CA917A0245B00264262 /* Default-568h@2x.png in Resources */,
 				70B34CAC17A0245B00264262 /* MainStoryboard.storyboard in Resources */,
+				70AA7AF417A061210074D266 /* zooey and kitten.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
