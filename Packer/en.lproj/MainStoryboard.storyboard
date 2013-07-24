@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="c3p-ta-n2F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Fkx-Mc-tSY">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="8mP-7p-cOI">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Fkx-Mc-tSY" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackTranslucent" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackTranslucent" id="J7C-wo-r0N">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="c3p-ta-n2F" kind="relationship" relationship="rootViewController" id="tNm-WB-txE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ria-n3-V69" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-290" y="133"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="uJD-ao-unW">
             <objects>
@@ -73,6 +90,7 @@
                             <outlet property="delegate" destination="c3p-ta-n2F" id="v8T-PI-Nh2"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="leM-0i-LZ8"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfh-Hu-PBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

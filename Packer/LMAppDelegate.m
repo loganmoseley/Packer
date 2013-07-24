@@ -24,7 +24,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    LMViewController *rootViewController = (LMViewController *)self.window.rootViewController;
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    LMViewController *rootViewController = [navigationController viewControllers][0];
     
     NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     
