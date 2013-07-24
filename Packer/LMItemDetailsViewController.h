@@ -1,5 +1,5 @@
 //
-//  LMViewController.h
+//  LMItemDetailsViewController.h
 //  Packer
 //
 //  Created by Logan Moseley on 7/24/13.
@@ -8,5 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LMViewController : UITableViewController
+@interface LMItemDetailsViewController : UITableViewController
+
 @end
