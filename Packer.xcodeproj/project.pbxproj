@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70AA7AE917A032F90074D266 /* Box.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7AE817A032F90074D266 /* Box.m */; };
+		70AA7AEC17A032F90074D266 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7AEB17A032F90074D266 /* Item.m */; };
 		70B34C9317A0245B00264262 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9217A0245B00264262 /* UIKit.framework */; };
 		70B34C9517A0245B00264262 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9417A0245B00264262 /* Foundation.framework */; };
 		70B34C9717A0245B00264262 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9617A0245B00264262 /* CoreGraphics.framework */; };
@@ -20,9 +22,14 @@
 		70B34CAF17A0245B00264262 /* LMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B34CAE17A0245B00264262 /* LMViewController.m */; };
 		70B34CB717A02B6600264262 /* LMItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B34CB617A02B6600264262 /* LMItemDetailsViewController.m */; };
 		70B34CBA17A02DAC00264262 /* LMNewItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B34CB917A02DAC00264262 /* LMNewItemViewController.m */; };
+		70B34CBD17A02E7500264262 /* Item.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70B34CBB17A02E7500264262 /* Item.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70AA7AE717A032F90074D266 /* Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
+		70AA7AE817A032F90074D266 /* Box.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Box.m; sourceTree = "<group>"; };
+		70AA7AEA17A032F90074D266 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		70AA7AEB17A032F90074D266 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		70B34C8F17A0245B00264262 /* Packer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B34C9217A0245B00264262 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		70B34C9417A0245B00264262 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -43,6 +50,7 @@
 		70B34CB617A02B6600264262 /* LMItemDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMItemDetailsViewController.m; sourceTree = "<group>"; };
 		70B34CB817A02DAC00264262 /* LMNewItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMNewItemViewController.h; sourceTree = "<group>"; };
 		70B34CB917A02DAC00264262 /* LMNewItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNewItemViewController.m; sourceTree = "<group>"; };
+		70B34CBC17A02E7500264262 /* Item.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Item.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,11 @@
 				70B34CB617A02B6600264262 /* LMItemDetailsViewController.m */,
 				70B34CB817A02DAC00264262 /* LMNewItemViewController.h */,
 				70B34CB917A02DAC00264262 /* LMNewItemViewController.m */,
+				70B34CBB17A02E7500264262 /* Item.xcdatamodeld */,
+				70AA7AEA17A032F90074D266 /* Item.h */,
+				70AA7AEB17A032F90074D266 /* Item.m */,
+				70AA7AE717A032F90074D266 /* Box.h */,
+				70AA7AE817A032F90074D266 /* Box.m */,
 				70B34C9917A0245B00264262 /* Supporting Files */,
 			);
 			path = Packer;
@@ -189,6 +202,9 @@
 				70B34CAF17A0245B00264262 /* LMViewController.m in Sources */,
 				70B34CB717A02B6600264262 /* LMItemDetailsViewController.m in Sources */,
 				70B34CBA17A02DAC00264262 /* LMNewItemViewController.m in Sources */,
+				70B34CBD17A02E7500264262 /* Item.xcdatamodeld in Sources */,
+				70AA7AE917A032F90074D266 /* Box.m in Sources */,
+				70AA7AEC17A032F90074D266 /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,8 +327,22 @@
 				70B34CB417A0245B00264262 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		70B34CBB17A02E7500264262 /* Item.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				70B34CBC17A02E7500264262 /* Item.xcdatamodel */,
+			);
+			currentVersion = 70B34CBC17A02E7500264262 /* Item.xcdatamodel */;
+			path = Item.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 70B34C8717A0245B00264262 /* Project object */;
 }
