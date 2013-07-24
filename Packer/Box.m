@@ -13,7 +13,8 @@
 @implementation Box
 
 @dynamic name;
-@dynamic summary;
+@dynamic info;
+@dynamic category;
 @dynamic items;
 
 @end

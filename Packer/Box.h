@@ -13,9 +13,10 @@
 
 @interface Box : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * summary;
-@property (nonatomic, retain) NSSet *items;
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSString * info;
+@property (nonatomic, strong) NSString * category;
+@property (nonatomic, strong) NSSet *items;
 @end
 
 @interface Box (CoreDataGeneratedAccessors)

@@ -13,11 +13,11 @@
 
 @interface Item : NSManagedObject
 
-@property (nonatomic, retain) NSString * info;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSDate * packingDate;
-@property (nonatomic, retain) NSData * picture;
-@property (nonatomic, retain) NSDate * sendingDate;
-@property (nonatomic, retain) Box *box;
+@property (nonatomic, strong) NSString * info;
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSDate * packingDate;
+@property (nonatomic, strong) NSData * picture;
+@property (nonatomic, strong) NSDate * sendingDate;
+@property (nonatomic, strong) Box *box;
 
 @end
