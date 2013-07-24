@@ -7,12 +7,42 @@
 //
 
 #import "LMAppDelegate.h"
+#import "LMViewController.h"
 
 @implementation LMAppDelegate
 
+- (NSString *)applicationDocumentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return paths.count > 0 ? paths[0] : nil;
+}
+
+- (void)saveContext
+{
+    
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    LMViewController *rootViewController = (LMViewController *)self.window.rootViewController;
+    
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    
+    NSError *error;
+    NSURL *storeUrl = [NSURL fileURLWithPath:[[self applicationDocumentsDirectory] stringByAppendingPathComponent:@"Packer.sqlite"]];
+    NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
+    NSPersistentStore *store = [persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error];
+    NSAssert(store, @"%@", [error description]);
+    
+    NSManagedObjectContext *managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    [managedObjectContext setPersistentStoreCoordinator:persistentStoreCoordinator];
+    
+    _managedObjectModel = managedObjectModel;
+    _managedObjectContext = managedObjectContext;
+    _persistentStoreCoordinator = persistentStoreCoordinator;
+    
+    rootViewController.managedObjectContext = managedObjectContext;
+    
     return YES;
 }
 							

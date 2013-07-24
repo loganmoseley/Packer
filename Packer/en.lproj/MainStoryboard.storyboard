@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BasicItem" textLabel="gJP-0V-rk2" detailTextLabel="rKO-Gt-3Cg" style="IBUITableViewCellStyleValue1" id="EdF-Qb-R8T">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Basic" textLabel="gJP-0V-rk2" detailTextLabel="rKO-Gt-3Cg" style="IBUITableViewCellStyleValue1" id="EdF-Qb-R8T">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -66,9 +66,6 @@
                                     <constraint firstItem="JEp-Zc-QsZ" firstAttribute="trailing" secondItem="1cb-7y-yZm" secondAttribute="trailing" type="default" id="l8m-Nf-Sln"/>
                                     <constraint firstItem="JEp-Zc-QsZ" firstAttribute="leading" secondItem="1cb-7y-yZm" secondAttribute="leading" type="default" id="wiQ-vL-B36"/>
                                 </constraints>
-                                <connections>
-                                    <segue destination="afE-cm-LvN" kind="modal" identifier="New" modalTransitionStyle="coverVertical" id="sMx-cK-5iX"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -89,17 +86,6 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="W4R-jo-X9E">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="oUf-iA-e3y" id="Bqm-Pg-VUU"/>
                             <outlet property="delegate" destination="oUf-iA-e3y" id="DSI-xB-OaY"/>
