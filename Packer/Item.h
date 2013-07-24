@@ -20,4 +20,7 @@
 @property (nonatomic, strong) NSDate * sendingDate;
 @property (nonatomic, strong) Box *box;
 
+- (NSString *)testName;
+- (UIImage *)image;
+
 @end

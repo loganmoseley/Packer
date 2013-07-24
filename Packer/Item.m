@@ -19,4 +19,14 @@
 @dynamic sendingDate;
 @dynamic box;
 
+- (NSString *)testName
+{
+    return @"Zooey Deschanel";
+}
+
+- (UIImage *)image
+{
+    return [UIImage imageWithData:self.picture];
+}
+
 @end
