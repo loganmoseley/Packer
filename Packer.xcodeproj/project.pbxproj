@@ -19,6 +19,7 @@
 		70B34CAC17A0245B00264262 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70B34CAA17A0245B00264262 /* MainStoryboard.storyboard */; };
 		70B34CAF17A0245B00264262 /* LMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B34CAE17A0245B00264262 /* LMViewController.m */; };
 		70B34CB717A02B6600264262 /* LMItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B34CB617A02B6600264262 /* LMItemDetailsViewController.m */; };
+		70B34CBA17A02DAC00264262 /* LMNewItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70B34CB917A02DAC00264262 /* LMNewItemViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		70B34CAE17A0245B00264262 /* LMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LMViewController.m; sourceTree = "<group>"; };
 		70B34CB517A02B6600264262 /* LMItemDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMItemDetailsViewController.h; sourceTree = "<group>"; };
 		70B34CB617A02B6600264262 /* LMItemDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMItemDetailsViewController.m; sourceTree = "<group>"; };
+		70B34CB817A02DAC00264262 /* LMNewItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMNewItemViewController.h; sourceTree = "<group>"; };
+		70B34CB917A02DAC00264262 /* LMNewItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNewItemViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,8 @@
 				70B34CAE17A0245B00264262 /* LMViewController.m */,
 				70B34CB517A02B6600264262 /* LMItemDetailsViewController.h */,
 				70B34CB617A02B6600264262 /* LMItemDetailsViewController.m */,
+				70B34CB817A02DAC00264262 /* LMNewItemViewController.h */,
+				70B34CB917A02DAC00264262 /* LMNewItemViewController.m */,
 				70B34C9917A0245B00264262 /* Supporting Files */,
 			);
 			path = Packer;
@@ -183,6 +188,7 @@
 				70B34CA317A0245B00264262 /* LMAppDelegate.m in Sources */,
 				70B34CAF17A0245B00264262 /* LMViewController.m in Sources */,
 				70B34CB717A02B6600264262 /* LMItemDetailsViewController.m in Sources */,
+				70B34CBA17A02DAC00264262 /* LMNewItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
