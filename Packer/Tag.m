@@ -12,6 +12,7 @@
 @implementation Tag
 
 @dynamic title;
+@dynamic items;
 
 + (instancetype)tagWithTitle:(NSString *)title inManagedObjectContext:(NSManagedObjectContext *)context
 {

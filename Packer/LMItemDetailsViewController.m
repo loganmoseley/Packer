@@ -10,6 +10,8 @@
 #import "Item.h"
 #import "Box.h"
 #import "Tag.h"
+#import "NSCollections+Reduce.h"
+#import "NSSortDescriptor+Convenience.h"
 
 @interface LMItemDetailsViewController ()
 
@@ -54,7 +56,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -63,6 +65,8 @@
     static NSString *PictureIdentifier = @"Picture";
     NSString *identifier = indexPath.row == 0 ? PictureIdentifier : TextIdentifier;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    
+    NSArray *sortedTags;
     
     switch (indexPath.row) {
             
@@ -92,7 +96,9 @@
             
         case 5:
             cell.textLabel.text = @"tags";
-            cell.detailTextLabel.text = [(Tag *)[self.item.tags anyObject] title];
+            sortedTags = [self.item.tags sortedArrayUsingDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"title"] ascending:YES]];
+            cell.detailTextLabel.text = [[sortedTags valueForKey:@"title"] componentsJoinedByString:@", "];
+            break;
             
         case 6:
             cell.textLabel.text = @"box";
