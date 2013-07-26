@@ -11,7 +11,7 @@
 #import "Item.h"
 
 @interface LMNewItemViewController ()
-
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end
 
 @implementation LMNewItemViewController
@@ -37,9 +37,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
+    if (_persistentStoreCoordinator == persistentStoreCoordinator)
+        return;
+    _persistentStoreCoordinator = persistentStoreCoordinator;
+    
+    self.managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    self.managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator;
+}
+
 - (IBAction)done:(id)sender
 {
     [Item insertPlaceholderItemIntoManagedObjectContext:self.managedObjectContext];
+    
+    NSError *error;
+    if (![self.managedObjectContext save:&error])
+        NSLog(@"New item save error: %@", [error description]);
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

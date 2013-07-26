@@ -44,19 +44,21 @@
     self.fetchedResultsController.delegate = self;
     
     NSError *error;
-    BOOL success = [self.fetchedResultsController performFetch:&error];
+    if (![self.fetchedResultsController performFetch:&error])
+        NSLog(@"Error in fetching managed objects: %@", [error description]);
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(managedObjectContextDidSaveNotification:)
+                                                 name:NSManagedObjectContextDidSaveNotification
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
 }
 
 - (BOOL)isLastRowInLastSection:(NSIndexPath *)indexPath;
@@ -151,7 +153,7 @@
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     NSInteger addCell = ([tableView numberOfSections] - 1 == section) ? 1 : 0;
-    return [sectionInfo numberOfObjects] + addCell;
+    return [sectionInfo numberOfObjects];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -165,8 +167,8 @@
     static NSString *BasicIdentifier = @"Basic";
     static NSString *AddIdentifier = @"Add";
     
-    if ([self isLastRowInLastSection:indexPath])
-        return [tableView dequeueReusableCellWithIdentifier:AddIdentifier forIndexPath:indexPath];
+//    if ([self isLastRowInLastSection:indexPath])
+//        return [tableView dequeueReusableCellWithIdentifier:AddIdentifier forIndexPath:indexPath];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BasicIdentifier forIndexPath:indexPath];
     
@@ -180,15 +182,20 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return ![self isLastRowInLastSection:indexPath];
+//    return ![self isLastRowInLastSection:indexPath];
+    return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete && ![self isLastRowInLastSection:indexPath])
+    if (editingStyle == UITableViewCellEditingStyleDelete) // && ![self isLastRowInLastSection:indexPath])
     {
         id obj = [self.fetchedResultsController objectAtIndexPath:indexPath];
         [self.managedObjectContext deleteObject:obj];
+        
+        NSError *error;
+        if (![self.managedObjectContext save:nil])
+            NSLog(@"Error saving context after deleting: %@", [error description]);
     }
 }
 
@@ -198,8 +205,8 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if ([self isLastRowInLastSection:indexPath])
-        [Item insertPlaceholderItemIntoManagedObjectContext:self.managedObjectContext];
+//    if ([self isLastRowInLastSection:indexPath])
+//        [Item insertPlaceholderItemIntoManagedObjectContext:self.managedObjectContext];
 }
 
 #pragma mark - Segues
@@ -216,8 +223,22 @@
     else if ([segue.identifier isEqualToString:@"Add"])
     {
         LMNewItemViewController *addController = segue.destinationViewController;
-        addController.managedObjectContext = self.managedObjectContext;
+        addController.persistentStoreCoordinator = self.managedObjectContext.persistentStoreCoordinator;
     }
+}
+
+#pragma mark - Notifications
+
+- (void)managedObjectContextDidSaveNotification:(NSNotification *)note
+{
+    NSManagedObjectContext *context = [note object];
+    if (self.managedObjectContext == context)
+        return;
+    if (self.managedObjectContext.persistentStoreCoordinator != context.persistentStoreCoordinator)
+        return;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.managedObjectContext mergeChangesFromContextDidSaveNotification:note];
+    });
 }
 
 @end
