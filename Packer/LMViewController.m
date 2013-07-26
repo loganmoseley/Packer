@@ -185,12 +185,7 @@
     BOOL isLastRow = [tableView numberOfRowsInSection:indexPath.section] - 1 == indexPath.row;
     BOOL isAddCell = isLastSection && isLastRow;
     if (isAddCell)
-    {
-        NSEntityDescription *itemDescription = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
-        Item *item = [[Item alloc] initWithEntity:itemDescription insertIntoManagedObjectContext:self.managedObjectContext];
-        [item setName:@"Zooey Deschanel"];
-        [item setImage:[UIImage imageNamed:@"zooey and kitten.jpg"]];
-    }    
+        [Item insertPlaceholderItemIntoManagedObjectContext:self.managedObjectContext];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

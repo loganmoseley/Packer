@@ -39,11 +39,7 @@
 
 - (IBAction)done:(id)sender
 {
-    NSEntityDescription *itemDescription = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
-    Item *item = [[Item alloc] initWithEntity:itemDescription insertIntoManagedObjectContext:self.managedObjectContext];
-    [item setName:@"Zooey Deschanel"];
-    [item setImage:[UIImage imageNamed:@"zooey and kitten.jpg"]];
-    
+    [Item insertPlaceholderItemIntoManagedObjectContext:self.managedObjectContext];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

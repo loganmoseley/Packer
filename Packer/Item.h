@@ -22,4 +22,6 @@
 
 @property (nonatomic, strong) UIImage *image;
 
++ (instancetype)insertPlaceholderItemIntoManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end

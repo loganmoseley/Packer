@@ -21,4 +21,13 @@
 
 @synthesize image;
 
++ (instancetype)insertPlaceholderItemIntoManagedObjectContext:(NSManagedObjectContext *)context
+{
+    NSEntityDescription *itemDescription = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:context];
+    Item *item = [[Item alloc] initWithEntity:itemDescription insertIntoManagedObjectContext:context];
+    [item setName:@"Zooey Deschanel"];
+    [item setImage:[UIImage imageNamed:@"zooey and kitten.jpg"]];
+    return item;
+}
+
 @end
