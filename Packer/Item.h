@@ -20,7 +20,8 @@
 @property (nonatomic, strong) NSDate * sendingDate;
 @property (nonatomic, strong) Box *box;
 
-@property (nonatomic, strong) UIImage *image;
+- (UIImage *)image;
+- (void)setImage:(UIImage *)image;
 
 + (instancetype)insertPlaceholderItemIntoManagedObjectContext:(NSManagedObjectContext *)context;
 

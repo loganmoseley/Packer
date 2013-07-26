@@ -19,8 +19,6 @@
 @dynamic sendingDate;
 @dynamic box;
 
-@synthesize image;
-
 + (instancetype)insertPlaceholderItemIntoManagedObjectContext:(NSManagedObjectContext *)context
 {
     NSEntityDescription *itemDescription = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:context];
@@ -28,6 +26,16 @@
     [item setName:@"Zooey Deschanel"];
     [item setImage:[UIImage imageNamed:@"zooey and kitten.jpg"]];
     return item;
+}
+
+- (UIImage *)image
+{
+    return [UIImage imageWithData:self.picture];
+}
+
+- (void)setImage:(UIImage *)image_
+{
+    [self setPicture:UIImageJPEGRepresentation(image_, 0.7)];
 }
 
 @end

@@ -11,6 +11,7 @@
 #import "LMNewItemViewController.h"
 #import "Item.h"
 #import "Box.h"
+#import "NSSortDescriptor+Convenience.h"
 
 @interface LMViewController ()
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -18,12 +19,15 @@
 
 @implementation LMViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
+    if (!(self = [super initWithCoder:aDecoder])) return nil;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(managedObjectContextDidSaveNotification:)
+                                                 name:NSManagedObjectContextDidSaveNotification
+                                               object:nil];
+    
     return self;
 }
 
@@ -31,11 +35,12 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
     NSFetchRequest *fetchRequest = [NSFetchRequest new];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
-    NSSortDescriptor *sortByBoxName = [[NSSortDescriptor alloc] initWithKey:@"box.name" ascending:YES];
+    [fetchRequest setSortDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"box.name", @"name", @"sendingDate"] ascending:YES]];
     [fetchRequest setEntity:entity];
-    [fetchRequest setSortDescriptors:@[sortByBoxName]];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:self.managedObjectContext
@@ -46,18 +51,15 @@
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error])
         NSLog(@"Error in fetching managed objects: %@", [error description]);
-    
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(managedObjectContextDidSaveNotification:)
-                                                 name:NSManagedObjectContextDidSaveNotification
-                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)dealloc
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
 }
 
