@@ -17,6 +17,7 @@
 @dynamic packingDate;
 @dynamic picture;
 @dynamic sendingDate;
+@dynamic tags;
 @dynamic box;
 
 + (instancetype)insertPlaceholderItemIntoManagedObjectContext:(NSManagedObjectContext *)context
@@ -25,6 +26,7 @@
     Item *item = [[Item alloc] initWithEntity:itemDescription insertIntoManagedObjectContext:context];
     [item setName:@"Zooey Deschanel"];
     [item setImage:[UIImage imageNamed:@"zooey and kitten.jpg"]];
+    [item setTags:@[@"tag one", @"tag two"]];
     return item;
 }
 

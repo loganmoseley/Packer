@@ -13,9 +13,12 @@
         <attribute name="picture" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="sendingDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="box" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Box" inverseName="items" inverseEntity="Box" syncable="YES"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" syncable="YES"/>
     </entity>
+    <entity name="Tag" syncable="YES"/>
     <elements>
         <element name="Box" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="Item" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Item" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="Tag" positionX="160" positionY="192" width="128" height="45"/>
     </elements>
 </model>

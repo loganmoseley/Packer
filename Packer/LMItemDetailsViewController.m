@@ -90,6 +90,10 @@
             break;
             
         case 5:
+            cell.textLabel.text = @"tags";
+            cell.detailTextLabel.text = self.item.tags[0];
+            
+        case 6:
             cell.textLabel.text = @"box";
             cell.detailTextLabel.text = self.item.box.name;
             break;
