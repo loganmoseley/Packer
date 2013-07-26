@@ -14,6 +14,7 @@
 		70AA7AF717A2F8910074D266 /* NSSortDescriptor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7AF617A2F8910074D266 /* NSSortDescriptor+Convenience.m */; };
 		70AA7B8C17A301380074D266 /* NSCollections+Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7B8B17A301380074D266 /* NSCollections+Map.m */; };
 		70AA7B9817A31A590074D266 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7B9717A31A590074D266 /* Tag.m */; };
+		70AA7B9B17A325C90074D266 /* NSCollections+Reduce.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7B9A17A325C90074D266 /* NSCollections+Reduce.m */; };
 		70B34C9317A0245B00264262 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9217A0245B00264262 /* UIKit.framework */; };
 		70B34C9517A0245B00264262 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9417A0245B00264262 /* Foundation.framework */; };
 		70B34C9717A0245B00264262 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9617A0245B00264262 /* CoreGraphics.framework */; };
@@ -43,6 +44,8 @@
 		70AA7B8B17A301380074D266 /* NSCollections+Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCollections+Map.m"; sourceTree = "<group>"; };
 		70AA7B9617A31A590074D266 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		70AA7B9717A31A590074D266 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		70AA7B9917A325C90074D266 /* NSCollections+Reduce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCollections+Reduce.h"; sourceTree = "<group>"; };
+		70AA7B9A17A325C90074D266 /* NSCollections+Reduce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCollections+Reduce.m"; sourceTree = "<group>"; };
 		70B34C8F17A0245B00264262 /* Packer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B34C9217A0245B00264262 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		70B34C9417A0245B00264262 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -144,6 +147,8 @@
 				70B34C9E17A0245B00264262 /* main.m */,
 				70AA7B8A17A301380074D266 /* NSCollections+Map.h */,
 				70AA7B8B17A301380074D266 /* NSCollections+Map.m */,
+				70AA7B9917A325C90074D266 /* NSCollections+Reduce.h */,
+				70AA7B9A17A325C90074D266 /* NSCollections+Reduce.m */,
 				70B34CA017A0245B00264262 /* Packer-Prefix.pch */,
 				70B34CA417A0245B00264262 /* Default.png */,
 				70B34CA617A0245B00264262 /* Default@2x.png */,
@@ -231,6 +236,7 @@
 				70AA7AF717A2F8910074D266 /* NSSortDescriptor+Convenience.m in Sources */,
 				70AA7B8C17A301380074D266 /* NSCollections+Map.m in Sources */,
 				70AA7B9817A31A590074D266 /* Tag.m in Sources */,
+				70AA7B9B17A325C90074D266 /* NSCollections+Reduce.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
