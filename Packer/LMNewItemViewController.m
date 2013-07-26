@@ -7,6 +7,8 @@
 //
 
 #import "LMNewItemViewController.h"
+#import <CoreData/CoreData.h>
+#import "Item.h"
 
 @interface LMNewItemViewController ()
 
@@ -33,6 +35,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)done:(id)sender
+{
+    NSEntityDescription *itemDescription = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
+    Item *item = [[Item alloc] initWithEntity:itemDescription insertIntoManagedObjectContext:self.managedObjectContext];
+    [item setName:@"Zooey Deschanel"];
+    [item setImage:[UIImage imageNamed:@"zooey and kitten.jpg"]];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

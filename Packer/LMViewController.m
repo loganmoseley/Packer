@@ -190,8 +190,7 @@
         Item *item = [[Item alloc] initWithEntity:itemDescription insertIntoManagedObjectContext:self.managedObjectContext];
         [item setName:@"Zooey Deschanel"];
         [item setImage:[UIImage imageNamed:@"zooey and kitten.jpg"]];
-    }
-    
+    }    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -203,10 +202,10 @@
         Item *selectedItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
         detailsController.item = selectedItem;
     }
-    else if ([segue.identifier isEqualToString:@"New"])
+    else if ([segue.identifier isEqualToString:@"Add"])
     {
-        LMNewItemViewController *newController = segue.destinationViewController;
-        NSLog(@"prepareForSegue to %@", [newController class]);
+        LMNewItemViewController *addController = segue.destinationViewController;
+        addController.managedObjectContext = self.managedObjectContext;
     }
 }
 

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LMNewItemViewController : UIViewController
-
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end
