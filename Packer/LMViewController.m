@@ -50,13 +50,20 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)isLastRowInLastSection:(NSIndexPath *)indexPath;
+{
+    BOOL isLastSection = [self.tableView numberOfSections] - 1 == indexPath.section;
+    BOOL isLastRow = [self.tableView numberOfRowsInSection:indexPath.section] - 1 == indexPath.row;
+    return isLastSection && isLastRow;
 }
 
 #pragma mark - Fetched results controller
@@ -158,11 +165,7 @@
     static NSString *BasicIdentifier = @"Basic";
     static NSString *AddIdentifier = @"Add";
     
-    BOOL isLastSection = [tableView numberOfSections] - 1 == indexPath.section;
-    BOOL isLastRow = [tableView numberOfRowsInSection:indexPath.section] - 1 == indexPath.row;
-    BOOL isAddCell = isLastSection && isLastRow;
-    
-    if (isAddCell)
+    if ([self isLastRowInLastSection:indexPath])
         return [tableView dequeueReusableCellWithIdentifier:AddIdentifier forIndexPath:indexPath];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BasicIdentifier forIndexPath:indexPath];
@@ -175,18 +178,31 @@
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return ![self isLastRowInLastSection:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete && ![self isLastRowInLastSection:indexPath])
+    {
+        id obj = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:obj];
+    }
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    BOOL isLastSection = [tableView numberOfSections] - 1 == indexPath.section;
-    BOOL isLastRow = [tableView numberOfRowsInSection:indexPath.section] - 1 == indexPath.row;
-    BOOL isAddCell = isLastSection && isLastRow;
-    if (isAddCell)
+    if ([self isLastRowInLastSection:indexPath])
         [Item insertPlaceholderItemIntoManagedObjectContext:self.managedObjectContext];
 }
+
+#pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
