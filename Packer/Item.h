@@ -18,11 +18,21 @@
 @property (nonatomic, strong) NSDate * packingDate;
 @property (nonatomic, strong) NSData * picture;
 @property (nonatomic, strong) NSDate * sendingDate;
+@property (nonatomic, retain) NSSet *tags;
 @property (nonatomic, strong) Box *box;
 
 - (UIImage *)image;
 - (void)setImage:(UIImage *)image;
 
 + (instancetype)insertPlaceholderItemIntoManagedObjectContext:(NSManagedObjectContext *)context;
+
+@end
+
+@interface Item (CoreDataGeneratedAccessors)
+
+- (void)addTagsObject:(NSManagedObject *)value;
+- (void)removeTagsObject:(NSManagedObject *)value;
+- (void)addTags:(NSSet *)values;
+- (void)removeTags:(NSSet *)values;
 
 @end

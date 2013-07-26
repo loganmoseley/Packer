@@ -13,6 +13,7 @@
 		70AA7AF417A061210074D266 /* zooey and kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 70AA7AF317A061210074D266 /* zooey and kitten.jpg */; };
 		70AA7AF717A2F8910074D266 /* NSSortDescriptor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7AF617A2F8910074D266 /* NSSortDescriptor+Convenience.m */; };
 		70AA7B8C17A301380074D266 /* NSCollections+Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7B8B17A301380074D266 /* NSCollections+Map.m */; };
+		70AA7B9817A31A590074D266 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7B9717A31A590074D266 /* Tag.m */; };
 		70B34C9317A0245B00264262 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9217A0245B00264262 /* UIKit.framework */; };
 		70B34C9517A0245B00264262 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9417A0245B00264262 /* Foundation.framework */; };
 		70B34C9717A0245B00264262 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9617A0245B00264262 /* CoreGraphics.framework */; };
@@ -40,6 +41,8 @@
 		70AA7AF617A2F8910074D266 /* NSSortDescriptor+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSortDescriptor+Convenience.m"; sourceTree = "<group>"; };
 		70AA7B8A17A301380074D266 /* NSCollections+Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCollections+Map.h"; sourceTree = "<group>"; };
 		70AA7B8B17A301380074D266 /* NSCollections+Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCollections+Map.m"; sourceTree = "<group>"; };
+		70AA7B9617A31A590074D266 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		70AA7B9717A31A590074D266 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		70B34C8F17A0245B00264262 /* Packer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B34C9217A0245B00264262 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		70B34C9417A0245B00264262 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -119,10 +122,12 @@
 				70B34CB817A02DAC00264262 /* LMNewItemViewController.h */,
 				70B34CB917A02DAC00264262 /* LMNewItemViewController.m */,
 				70B34CBB17A02E7500264262 /* MyModel.xcdatamodeld */,
-				70AA7AEA17A032F90074D266 /* Item.h */,
-				70AA7AEB17A032F90074D266 /* Item.m */,
 				70AA7AE717A032F90074D266 /* Box.h */,
 				70AA7AE817A032F90074D266 /* Box.m */,
+				70AA7AEA17A032F90074D266 /* Item.h */,
+				70AA7AEB17A032F90074D266 /* Item.m */,
+				70AA7B9617A31A590074D266 /* Tag.h */,
+				70AA7B9717A31A590074D266 /* Tag.m */,
 				70AA7AF317A061210074D266 /* zooey and kitten.jpg */,
 				70AA7AF517A2F8910074D266 /* NSSortDescriptor+Convenience.h */,
 				70AA7AF617A2F8910074D266 /* NSSortDescriptor+Convenience.m */,
@@ -225,6 +230,7 @@
 				70AA7AEC17A032F90074D266 /* Item.m in Sources */,
 				70AA7AF717A2F8910074D266 /* NSSortDescriptor+Convenience.m in Sources */,
 				70AA7B8C17A301380074D266 /* NSCollections+Map.m in Sources */,
+				70AA7B9817A31A590074D266 /* Tag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
