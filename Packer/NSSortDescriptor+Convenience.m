@@ -7,15 +7,15 @@
 //
 
 #import "NSSortDescriptor+Convenience.h"
+#import "NSCollections+Map.h"
 
 @implementation NSSortDescriptor (Convenience)
 
 + (NSArray *)sortDescriptorsForKeys:(NSArray *)keys ascending:(BOOL)ascending
 {
-    NSMutableArray *descriptors = [@[] mutableCopy];
-    for (NSString *key in keys)
-        [descriptors addObject:[NSSortDescriptor sortDescriptorWithKey:key ascending:ascending]];
-    return descriptors;
+    return [keys map:^NSSortDescriptor*(NSString *key) {
+        return [NSSortDescriptor sortDescriptorWithKey:key ascending:ascending];
+    }];
 }
 
 @end
