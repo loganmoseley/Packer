@@ -9,6 +9,7 @@
 #import "LMItemDetailsViewController.h"
 #import "Item.h"
 #import "Box.h"
+#import "Tag.h"
 
 @interface LMItemDetailsViewController ()
 
@@ -91,7 +92,7 @@
             
         case 5:
             cell.textLabel.text = @"tags";
-            cell.detailTextLabel.text = self.item.tags[0];
+            cell.detailTextLabel.text = [(Tag *)[self.item.tags anyObject] title];
             
         case 6:
             cell.textLabel.text = @"box";

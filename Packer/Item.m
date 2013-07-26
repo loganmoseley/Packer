@@ -8,7 +8,7 @@
 
 #import "Item.h"
 #import "Box.h"
-
+#import "Tag.h"
 
 @implementation Item
 
@@ -26,7 +26,10 @@
     Item *item = [[Item alloc] initWithEntity:itemDescription insertIntoManagedObjectContext:context];
     [item setName:@"Zooey Deschanel"];
     [item setImage:[UIImage imageNamed:@"zooey and kitten.jpg"]];
-    [item setTags:@[@"tag one", @"tag two"]];
+    [item addTags:[NSSet setWithObjects:
+                   [Tag tagWithTitle:@"tag one" inManagedObjectContext:context],
+                   [Tag tagWithTitle:@"tag two" inManagedObjectContext:context],
+                   nil]];
     return item;
 }
 

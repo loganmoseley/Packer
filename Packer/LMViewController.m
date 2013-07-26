@@ -11,6 +11,7 @@
 #import "LMNewItemViewController.h"
 #import "Item.h"
 #import "Box.h"
+#import "Tag.h"
 #import "NSSortDescriptor+Convenience.h"
 
 @interface LMViewController ()
@@ -178,6 +179,12 @@
     [cell.textLabel setText:item.name];
     [cell.detailTextLabel setText:item.box.name];
     [cell.imageView setImage:[item image]];
+    
+    Tag *tag = [[item tags] anyObject];
+    if (tag)
+        [cell.detailTextLabel setText:tag.title];
+    else
+        [cell.detailTextLabel setText:@"missing tag"];
     
     return cell;
 }

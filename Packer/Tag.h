@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSString * title;
 
++ (instancetype)tagWithTitle:(NSString *)title inManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end
