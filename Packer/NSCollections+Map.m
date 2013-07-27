@@ -39,10 +39,8 @@
     
 	[self enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
 		id value = block(obj);
-		if (!value)
-			value = [NSNull null];
-		
-		[result addObject:value];
+		if (value)
+            [result addObject:value];
 	}];
 	
 	return result;
@@ -60,10 +58,8 @@
 	
 	[self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		id value = block(obj);
-		if (!value)
-			value = [NSNull null];
-		
-		[result addObject:value];
+		if (value)
+            [result addObject:value];
 	}];
 	
 	return result;
@@ -81,10 +77,8 @@
 	
     [self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 		id value = block(key, obj);
-		if (!value)
-			value = [NSNull null];
-		
-		[result setObject:value forKey:key];
+		if (value)
+            [result setObject:value forKey:key];
 	}];
 	
 	return result;

@@ -16,9 +16,21 @@
 
 + (instancetype)tagWithTitle:(NSString *)title inManagedObjectContext:(NSManagedObjectContext *)context
 {
-    NSEntityDescription *itemDescription = [NSEntityDescription entityForName:@"Tag" inManagedObjectContext:context];
-    Tag *tag = [[Tag alloc] initWithEntity:itemDescription insertIntoManagedObjectContext:context];
-    tag.title = title;
+    NSManagedObjectModel *model = context.persistentStoreCoordinator.managedObjectModel;
+    NSFetchRequest *request = [model fetchRequestFromTemplateWithName:@"TagsWithTitle" substitutionVariables:@{@"TITLE": title}];
+    [request setEntity:[NSEntityDescription entityForName:@"Tag" inManagedObjectContext:context]];
+    NSParameterAssert(request.entity);
+    
+    NSArray *tags = [context executeFetchRequest:request error:nil];
+    Tag *tag = tags.count > 0 ? tags[0] : nil;
+    
+    if (!tag)
+    {
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tag" inManagedObjectContext:context];
+        tag = [[Tag alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
+        tag.title = title;
+    }
+    
     return tag;
 }
 

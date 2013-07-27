@@ -44,18 +44,11 @@
 
 - (void)addTagsByTitles:(NSSet *)titles
 {
-    NSManagedObjectModel *model = self.managedObjectContext.persistentStoreCoordinator.managedObjectModel;
-    
-    NSSet *wantedTags = [titles map:^Tag*(NSString *title) {
-        NSFetchRequest *tagRequest = [model fetchRequestFromTemplateWithName:@"TagsWithTitle" substitutionVariables:@{@"TITLE": title}];
-        NSArray *tags = [self.managedObjectContext executeFetchRequest:tagRequest error:nil];
-        Tag *tag = tags.count > 0 ? tags[0] : nil;
-        if (!tag)
-            tag = [Tag tagWithTitle:title inManagedObjectContext:self.managedObjectContext];
+    NSSet *tags = [titles map:^Tag*(NSString *title) {
+        Tag *tag = [Tag tagWithTitle:title inManagedObjectContext:self.managedObjectContext];
         return tag;
     }];
-    
-    [self addTags:wantedTags];
+    [self addTags:tags];
 }
 
 @end

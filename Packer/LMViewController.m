@@ -42,7 +42,8 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setSortDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"box.name", @"name", @"sendingDate"] ascending:YES]];
     [fetchRequest setEntity:entity];
-    
+    NSParameterAssert(fetchRequest.entity);
+
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:self.managedObjectContext
                                                                           sectionNameKeyPath:nil
@@ -155,7 +156,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    NSInteger addCell = ([tableView numberOfSections] - 1 == section) ? 1 : 0;
+//    NSInteger addCell = ([tableView numberOfSections] - 1 == section) ? 1 : 0;
     return [sectionInfo numberOfObjects];
 }
 
@@ -168,8 +169,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *BasicIdentifier = @"Basic";
-    static NSString *AddIdentifier = @"Add";
     
+//    static NSString *AddIdentifier = @"Add";
 //    if ([self isLastRowInLastSection:indexPath])
 //        return [tableView dequeueReusableCellWithIdentifier:AddIdentifier forIndexPath:indexPath];
     

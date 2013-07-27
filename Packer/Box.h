@@ -17,6 +17,9 @@
 @property (nonatomic, strong) NSString * info;
 @property (nonatomic, strong) NSString * category;
 @property (nonatomic, strong) NSSet *items;
+
++ (instancetype)boxWithName:(NSString *)name inManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end
 
 @interface Box (CoreDataGeneratedAccessors)
