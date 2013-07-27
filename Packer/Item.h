@@ -21,10 +21,12 @@
 @property (nonatomic, retain) NSSet *tags;
 @property (nonatomic, strong) Box *box;
 
++ (instancetype)insertPlaceholderItemIntoManagedObjectContext:(NSManagedObjectContext *)context;
+
 - (UIImage *)image;
 - (void)setImage:(UIImage *)image;
 
-+ (instancetype)insertPlaceholderItemIntoManagedObjectContext:(NSManagedObjectContext *)context;
+- (void)addTagsByTitles:(NSSet *)titles;
 
 @end
 

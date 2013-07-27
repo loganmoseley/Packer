@@ -19,6 +19,8 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="tags" inverseEntity="Item" syncable="YES"/>
     </entity>
+    <fetchRequest name="TagsBeginningWithTitle" entity="Tag" predicateString="title BEGINSWITH $TITLE"/>
+    <fetchRequest name="TagsWithTitle" entity="Tag" predicateString="title == $TITLE"/>
     <elements>
         <element name="Box" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Item" positionX="0" positionY="0" width="128" height="150"/>

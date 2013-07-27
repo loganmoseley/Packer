@@ -19,8 +19,12 @@
 
 - (void)saveContext
 {
-    
+    NSError *error;
+    if (![self.managedObjectContext save:&error])
+        NSLog(@"Error saving ManagedObjectContext: %@", [error description]);
 }
+
+#pragma mark - Lifetime
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
