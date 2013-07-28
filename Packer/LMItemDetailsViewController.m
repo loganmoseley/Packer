@@ -56,19 +56,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    return self.item.image ? 7 : 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *TextIdentifier = @"Text";
     static NSString *PictureIdentifier = @"Picture";
-    NSString *identifier = indexPath.row == 0 ? PictureIdentifier : TextIdentifier;
+    BOOL isImageRow = self.item.image ? (indexPath.row == 0) : NO;
+    NSString *identifier = isImageRow ? PictureIdentifier : TextIdentifier;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
     NSArray *sortedTags;
     
-    switch (indexPath.row) {
+    NSInteger row = indexPath.row + (self.item.image ? 0 : 1);
+    
+    switch (row) {
             
         case 0:
             [(UIImageView *)[cell viewWithTag:1] setImage:self.item.image];
@@ -80,29 +83,29 @@
             break;
             
         case 2:
-            cell.textLabel.text = @"info";
-            cell.detailTextLabel.text = self.item.info;
-            break;
-            
-        case 3:
-            cell.textLabel.text = @"packingDate";
-            cell.detailTextLabel.text = [self.item.packingDate description];
-            break;
-            
-        case 4:
-            cell.textLabel.text = @"sendingDate";
-            cell.detailTextLabel.text = [self.item.sendingDate description];
-            break;
-            
-        case 5:
             cell.textLabel.text = @"tags";
             sortedTags = [self.item.tags sortedArrayUsingDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"title"] ascending:YES]];
             cell.detailTextLabel.text = [[sortedTags valueForKey:@"title"] componentsJoinedByString:@", "];
             break;
             
-        case 6:
+        case 3:
             cell.textLabel.text = @"box";
             cell.detailTextLabel.text = self.item.box.name;
+            break;
+            
+        case 4:
+            cell.textLabel.text = @"packingDate";
+            cell.detailTextLabel.text = [self stringForDate:self.item.packingDate inCalendar:nil];
+            break;
+            
+        case 5:
+            cell.textLabel.text = @"sendingDate";
+            cell.detailTextLabel.text = [self stringForDate:self.item.sendingDate inCalendar:nil];
+            break;
+            
+        case 6:
+            cell.textLabel.text = @"info";
+            cell.detailTextLabel.text = self.item.info;
             break;
             
         default:
@@ -155,7 +158,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.row == 0 ? 200 : 44;
+    BOOL isImageRow = self.item.image ? (indexPath.row == 0) : NO;
+    return isImageRow ? 200 : 44;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -167,6 +171,17 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - Helpers
+
+- (NSString *)stringForDate:(NSDate *)date inCalendar:(NSCalendar *)calendar
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setLocale:[NSLocale currentLocale]];
+    [formatter setCalendar:calendar];
+    return [formatter stringFromDate:date];
 }
 
 @end
