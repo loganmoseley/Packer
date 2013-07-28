@@ -74,6 +74,16 @@
 
 #pragma mark - Fetched results controller
 
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
+}
+
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
     switch (type) {
@@ -123,18 +133,6 @@
             break;
     }
 }
-
-/*
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-}
- */
-
-/*
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-}
- */
 
 #pragma mark - Table view data source
 
