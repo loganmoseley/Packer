@@ -40,13 +40,13 @@
     
     NSFetchRequest *fetchRequest = [NSFetchRequest new];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setSortDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"box.name", @"name", @"sendingDate"] ascending:YES]];
+    [fetchRequest setSortDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"box.name", @"name", @"sendingDate", @"packingDate"] ascending:YES]];
     [fetchRequest setEntity:entity];
     NSParameterAssert(fetchRequest.entity);
 
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:nil
+                                                                          sectionNameKeyPath:@"box.name"
                                                                                    cacheName:nil];
     self.fetchedResultsController.delegate = self;
     
@@ -178,14 +178,7 @@
     
     Item *item = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [cell.textLabel setText:item.name];
-    [cell.detailTextLabel setText:item.box.name];
     [cell.imageView setImage:[item image]];
-    
-    Tag *tag = [[item tags] anyObject];
-    if (tag)
-        [cell.detailTextLabel setText:tag.title];
-    else
-        [cell.detailTextLabel setText:@"missing tag"];
     
     return cell;
 }

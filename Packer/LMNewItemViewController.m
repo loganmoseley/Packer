@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
     
-    self.item = [Item insertPlaceholderItemIntoManagedObjectContext:self.managedObjectContext];
+    self.item = [Item insertBlankItemIntoManagedObjectContext:self.managedObjectContext];
     
     self.nameField.text     = self.item.name;
     self.boxField.text      = self.item.box.name;
@@ -46,8 +46,8 @@
     
     NSTimeInterval sendingDateFromNow = [self.item.sendingDate timeIntervalSinceNow]; // seconds
     NSString *sendingStr    = [NSString stringWithFormat:@"%f", (sendingDateFromNow / 60 / 60 / 24)];
-    self.sendingField.text  = sendingStr;
-    self.packingField.text  = @"(figure out how to stringify...)";
+    self.sendingField.text  = self.item.sendingDate ? sendingStr : nil;
+    self.packingField.text  = [self.item.packingDate description];
     
     NSArray *titles         = [[self.item.tags allObjects] valueForKey:@"title"];
     self.tagsField.text     = titles.count ? [titles componentsJoinedByString:@", "] : nil;
@@ -83,7 +83,6 @@
     }];
         
     self.item.name        = trimmedName;
-    self.item.packingDate = [NSDate date];
     self.item.sendingDate = [NSDate dateWithTimeIntervalSinceNow:([trimmedSending doubleValue] * 60 * 60 * 24)];
     self.item.box         = [Box boxWithName:(trimmedBoxName?:@"") inManagedObjectContext:self.managedObjectContext];
     self.item.info        = trimmedInfo;

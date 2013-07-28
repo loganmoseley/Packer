@@ -21,6 +21,13 @@
 @dynamic tags;
 @dynamic box;
 
++ (instancetype)insertBlankItemIntoManagedObjectContext:(NSManagedObjectContext *)context
+{
+    NSEntityDescription *itemDescription = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:context];
+    Item *item = [[Item alloc] initWithEntity:itemDescription insertIntoManagedObjectContext:context];
+    return item;
+}
+
 + (instancetype)insertPlaceholderItemIntoManagedObjectContext:(NSManagedObjectContext *)context
 {
     NSEntityDescription *itemDescription = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:context];
@@ -28,8 +35,14 @@
     [item setName:@"Zooey Deschanel"];
     [item setImage:[UIImage imageNamed:@"zooey and kitten.jpg"]];        
     [item addTagsByTitles:[NSSet setWithArray:@[@"cute", @"kitty", @"zooey", @"blonde"]]];
-    
     return item;
+}
+
+- (void)awakeFromInsert
+{
+    [super awakeFromInsert];
+    self.packingDate = [NSDate date];
+    self.sendingDate = [NSDate date];
 }
 
 - (UIImage *)image

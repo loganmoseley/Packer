@@ -7,7 +7,7 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="box" inverseEntity="Item" syncable="YES"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES">
-        <attribute name="info" optional="YES" attributeType="String" defaultValueString="More information about this item." syncable="YES"/>
+        <attribute name="info" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="packingDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="picture" optional="YES" attributeType="Binary" syncable="YES"/>

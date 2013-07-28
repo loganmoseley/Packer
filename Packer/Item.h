@@ -15,12 +15,13 @@
 
 @property (nonatomic, strong) NSString * info;
 @property (nonatomic, strong) NSString * name;
-@property (nonatomic, strong) NSDate * packingDate;
 @property (nonatomic, strong) NSData * picture;
+@property (nonatomic, strong) NSDate * packingDate;
 @property (nonatomic, strong) NSDate * sendingDate;
 @property (nonatomic, retain) NSSet *tags;
 @property (nonatomic, strong) Box *box;
 
++ (instancetype)insertBlankItemIntoManagedObjectContext:(NSManagedObjectContext *)context;
 + (instancetype)insertPlaceholderItemIntoManagedObjectContext:(NSManagedObjectContext *)context;
 
 - (UIImage *)image;
