@@ -11,6 +11,11 @@
 
 @implementation NSSortDescriptor (Convenience)
 
++ (NSArray *)sortDescriptorsForKeys:(NSArray *)keys
+{
+    return [self sortDescriptorsForKeys:keys ascending:YES];
+}
+
 + (NSArray *)sortDescriptorsForKeys:(NSArray *)keys ascending:(BOOL)ascending
 {
     return [keys map:^NSSortDescriptor*(NSString *key) {

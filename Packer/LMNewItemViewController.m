@@ -171,6 +171,11 @@
 
 #pragma mark - Helpers
 
+- (IBAction)imageViewWasTouched:(id)sender
+{
+    // launch an image picker view here
+}
+
 - (NSString *)stringForDate:(NSDate *)date inCalendar:(NSCalendar *)calendar
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

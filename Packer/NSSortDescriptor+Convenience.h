@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSSortDescriptor (Convenience)
++ (NSArray *)sortDescriptorsForKeys:(NSArray *)keys; // ascending == YES
 + (NSArray *)sortDescriptorsForKeys:(NSArray *)keys ascending:(BOOL)ascending;
 @end

@@ -14,8 +14,29 @@
 #import "Tag.h"
 #import "NSSortDescriptor+Convenience.h"
 
+
+@interface LMSectioningDescription : NSObject
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *sectionNameKeyPath;
+@property (nonatomic, copy) NSArray *sortDescriptors;
++ (instancetype)sectioningWithTitle:(NSString *)title sectionNameKeyPath:(NSString *)keyPath sortDescriptors:(NSArray *)descriptors;
+@end
+
+@implementation LMSectioningDescription
++ (instancetype)sectioningWithTitle:(NSString *)title sectionNameKeyPath:(NSString *)keyPath sortDescriptors:(NSArray *)descriptors
+{
+    LMSectioningDescription *sd = [LMSectioningDescription new];
+    sd.title = title; sd.sortDescriptors = descriptors; sd.sectionNameKeyPath = keyPath;
+    return sd;
+}
+@end
+
+
 @interface LMViewController ()
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSEnumerator *sortingByTitleEnumerator;
+@property (nonatomic, strong) NSArray *sortingByTitle; // sort by Box name, name (initial), and sending date
+@property (nonatomic, weak) UILabel *navTitle; // text for titles from sortingByTitle
 @end
 
 @implementation LMViewController
@@ -29,6 +50,15 @@
                                                  name:NSManagedObjectContextDidSaveNotification
                                                object:nil];
     
+    self.sortingByTitle = @[ [LMSectioningDescription sectioningWithTitle:@"By Box"
+                                                       sectionNameKeyPath:@"box.name"
+                                                          sortDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"box.name", @"name", @"sendingDate", @"packingDate"]]],
+                             [LMSectioningDescription sectioningWithTitle:@"By Name"
+                                                       sectionNameKeyPath:@"name"
+                                                          sortDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"name", @"sendingDate", @"box.name", @"packingDate"]]],
+                            ];
+    self.sortingByTitleEnumerator = [self.sortingByTitle objectEnumerator];
+    
     return self;
 }
 
@@ -38,21 +68,48 @@
     
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
-    NSFetchRequest *fetchRequest = [NSFetchRequest new];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setSortDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"box.name", @"name", @"sendingDate", @"packingDate"] ascending:YES]];
-    [fetchRequest setEntity:entity];
-    NSParameterAssert(fetchRequest.entity);
-
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                        managedObjectContext:self.managedObjectContext
-                                                                          sectionNameKeyPath:@"box.name"
-                                                                                   cacheName:nil];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [title setBackgroundColor:[UIColor clearColor]];
+    [title setTextAlignment:NSTextAlignmentCenter];
+    [title setShadowColor:[UIColor darkGrayColor]];
+    [title setShadowOffset:CGSizeMake(0, -1)];
+    [title setTextColor:[UIColor whiteColor]];
+    [title setFont:[UIFont systemFontOfSize:22]];
+    self.navTitle = title;
+    self.navigationItem.titleView = title;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(titleTapped:)];
+    [title addGestureRecognizer:tap];
+    [title setUserInteractionEnabled:YES];
+    
+    // sectioning description
+    
+    LMSectioningDescription *description = [self.sortingByTitleEnumerator nextObject];
+    if (!description) description = [(self.sortingByTitleEnumerator = [self.sortingByTitle objectEnumerator]) nextObject];
+    
+    [title setText:description.title];
+    self.fetchedResultsController = [self frcWithSortDescriptors:description.sortDescriptors sectionNameKeyPath:description.sectionNameKeyPath];
     self.fetchedResultsController.delegate = self;
     
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error])
         NSLog(@"Error in fetching managed objects: %@", [error description]);
+}
+
+- (void)titleTapped:(UITapGestureRecognizer *)recognizer
+{
+    LMSectioningDescription *description = [self.sortingByTitleEnumerator nextObject];
+    if (!description) description = [(self.sortingByTitleEnumerator = [self.sortingByTitle objectEnumerator]) nextObject];
+    
+    self.navTitle.text = description.title;
+    self.fetchedResultsController = [self frcWithSortDescriptors:description.sortDescriptors sectionNameKeyPath:description.sectionNameKeyPath];
+    self.fetchedResultsController.delegate = self;
+    
+    NSError *error;
+    if (![self.fetchedResultsController performFetch:&error])
+        NSLog(@"Error in fetching managed objects: %@", [error description]);
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,6 +122,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:nil];
 }
 
+#pragma mark - Helpers
+
 - (BOOL)isLastRowInLastSection:(NSIndexPath *)indexPath;
 {
     BOOL isLastSection = [self.tableView numberOfSections] - 1 == indexPath.section;
@@ -72,7 +131,23 @@
     return isLastSection && isLastRow;
 }
 
-#pragma mark - Fetched results controller
+- (NSFetchedResultsController *)frcWithSortDescriptors:(NSArray *)sortDescriptors sectionNameKeyPath:(NSString *)sectionNameKeyPath
+{
+    NSParameterAssert(sortDescriptors.count > 0);
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    [fetchRequest setEntity:entity];
+    NSParameterAssert(fetchRequest.entity);
+    
+    return [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                               managedObjectContext:self.managedObjectContext
+                                                 sectionNameKeyPath:sectionNameKeyPath
+                                                          cacheName:nil];
+}
+
+#pragma mark - Fetched results controller delegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
@@ -176,6 +251,7 @@
     
     Item *item = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [cell.textLabel setText:item.name];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:cell.textLabel.font.pointSize]];
     [cell.imageView setImage:[item image]];
     
     return cell;
