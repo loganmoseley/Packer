@@ -2,7 +2,7 @@
 //  Box.m
 //  Packer
 //
-//  Created by Logan Moseley on 7/24/13.
+//  Created by Logan Moseley on 8/2/13.
 //  Copyright (c) 2013 Logan Moseley. All rights reserved.
 //
 
@@ -12,9 +12,6 @@
 
 @implementation Box
 
-@dynamic name;
-@dynamic info;
-@dynamic category;
 @dynamic items;
 
 + (instancetype)boxWithName:(NSString *)name inManagedObjectContext:(NSManagedObjectContext *)context

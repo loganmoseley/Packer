@@ -47,7 +47,7 @@
     
     self.nameField.text     = self.item.name;
     self.boxField.text      = self.item.box.name;
-    self.infoInputView.text = self.item.info;
+    self.infoInputView.text = self.item.notes;
     
     self.packingField.text  = [self stringForDate:self.item.packingDate inCalendar:nil];
     self.sendingField.text  = [self stringForDate:self.item.sendingDate inCalendar:nil];
@@ -111,7 +111,7 @@
     self.item.name        = trimmedName;
     self.item.sendingDate = [NSDate dateWithTimeIntervalSinceNow:([trimmedSending doubleValue] * 60 * 60 * 24)];
     self.item.box         = [Box boxWithName:(trimmedBoxName?:@"") inManagedObjectContext:self.managedObjectContext];
-    self.item.info        = trimmedInfo;
+    self.item.notes       = trimmedInfo;
     
     [self.item removeTags:self.item.tags];
     [self.item addTagsByTitles:[NSSet setWithArray:trimmedTags]];

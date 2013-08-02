@@ -2,21 +2,19 @@
 //  Box.h
 //  Packer
 //
-//  Created by Logan Moseley on 7/24/13.
+//  Created by Logan Moseley on 8/2/13.
 //  Copyright (c) 2013 Logan Moseley. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Thing.h"
 
 @class Item;
 
-@interface Box : NSManagedObject
+@interface Box : Thing
 
-@property (nonatomic, strong) NSString * name;
-@property (nonatomic, strong) NSString * info;
-@property (nonatomic, strong) NSString * category;
-@property (nonatomic, strong) NSSet *items;
+@property (nonatomic, retain) NSSet *items;
 
 + (instancetype)boxWithName:(NSString *)name inManagedObjectContext:(NSManagedObjectContext *)context;
 

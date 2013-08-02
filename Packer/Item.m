@@ -1,8 +1,8 @@
 //
 //  Item.m
-//  Item
+//  Packer
 //
-//  Created by Logan Moseley on 7/24/13.
+//  Created by Logan Moseley on 8/2/13.
 //  Copyright (c) 2013 Logan Moseley. All rights reserved.
 //
 
@@ -11,14 +11,10 @@
 #import "Tag.h"
 #import "NSCollections+Map.h"
 
+
 @implementation Item
 
-@dynamic info;
-@dynamic name;
-@dynamic packingDate;
-@dynamic picture;
-@dynamic sendingDate;
-@dynamic tags;
+@dynamic value;
 @dynamic box;
 
 + (instancetype)insertBlankItemIntoManagedObjectContext:(NSManagedObjectContext *)context
@@ -33,7 +29,7 @@
     NSEntityDescription *itemDescription = [NSEntityDescription entityForName:@"Item" inManagedObjectContext:context];
     Item *item = [[Item alloc] initWithEntity:itemDescription insertIntoManagedObjectContext:context];
     [item setName:@"Zooey Deschanel"];
-    [item setImage:[UIImage imageNamed:@"zooey and kitten.jpg"]];        
+    [item setImage:[UIImage imageNamed:@"zooey and kitten.jpg"]];
     [item addTagsByTitles:[NSSet setWithArray:@[@"cute", @"kitty", @"zooey", @"blonde"]]];
     return item;
 }
@@ -63,5 +59,6 @@
     }];
     [self addTags:tags];
 }
+
 
 @end

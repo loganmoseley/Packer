@@ -17,8 +17,9 @@
 		701C74C417ABBDB800433064 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 701C74BC17ABBDB800433064 /* Icon@2x.png */; };
 		701C74C717ABBEBD00433064 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 701C74C517ABBEBD00433064 /* iTunesArtwork.png */; };
 		701C74C817ABBEBD00433064 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 701C74C617ABBEBD00433064 /* iTunesArtwork@2x.png */; };
-		70AA7AE917A032F90074D266 /* Box.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7AE817A032F90074D266 /* Box.m */; };
-		70AA7AEC17A032F90074D266 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7AEB17A032F90074D266 /* Item.m */; };
+		701C74E017ABC32900433064 /* Thing.m in Sources */ = {isa = PBXBuildFile; fileRef = 701C74DF17ABC32900433064 /* Thing.m */; };
+		701C74EB17ABC46D00433064 /* Box.m in Sources */ = {isa = PBXBuildFile; fileRef = 701C74E817ABC46700433064 /* Box.m */; };
+		701C74EC17ABC47000433064 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 701C74EA17ABC46700433064 /* Item.m */; };
 		70AA7AF217A04C5A0074D266 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AA7AF017A04C530074D266 /* CoreData.framework */; };
 		70AA7AF417A061210074D266 /* zooey and kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 70AA7AF317A061210074D266 /* zooey and kitten.jpg */; };
 		70AA7AF717A2F8910074D266 /* NSSortDescriptor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7AF617A2F8910074D266 /* NSSortDescriptor+Convenience.m */; };
@@ -52,10 +53,12 @@
 		701C74BC17ABBDB800433064 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		701C74C517ABBEBD00433064 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		701C74C617ABBEBD00433064 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
-		70AA7AE717A032F90074D266 /* Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
-		70AA7AE817A032F90074D266 /* Box.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Box.m; sourceTree = "<group>"; };
-		70AA7AEA17A032F90074D266 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
-		70AA7AEB17A032F90074D266 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		701C74DE17ABC32900433064 /* Thing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thing.h; sourceTree = "<group>"; };
+		701C74DF17ABC32900433064 /* Thing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thing.m; sourceTree = "<group>"; };
+		701C74E717ABC46600433064 /* Box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Box.h; sourceTree = "<group>"; };
+		701C74E817ABC46700433064 /* Box.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Box.m; sourceTree = "<group>"; };
+		701C74E917ABC46700433064 /* Item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		701C74EA17ABC46700433064 /* Item.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		70AA7AF017A04C530074D266 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		70AA7AF317A061210074D266 /* zooey and kitten.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zooey and kitten.jpg"; sourceTree = "<group>"; };
 		70AA7AF517A2F8910074D266 /* NSSortDescriptor+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSortDescriptor+Convenience.h"; sourceTree = "<group>"; };
@@ -162,10 +165,12 @@
 				70B34CB817A02DAC00264262 /* LMNewItemViewController.h */,
 				70B34CB917A02DAC00264262 /* LMNewItemViewController.m */,
 				70B34CBB17A02E7500264262 /* MyModel.xcdatamodeld */,
-				70AA7AE717A032F90074D266 /* Box.h */,
-				70AA7AE817A032F90074D266 /* Box.m */,
-				70AA7AEA17A032F90074D266 /* Item.h */,
-				70AA7AEB17A032F90074D266 /* Item.m */,
+				701C74DE17ABC32900433064 /* Thing.h */,
+				701C74DF17ABC32900433064 /* Thing.m */,
+				701C74E717ABC46600433064 /* Box.h */,
+				701C74E817ABC46700433064 /* Box.m */,
+				701C74E917ABC46700433064 /* Item.h */,
+				701C74EA17ABC46700433064 /* Item.m */,
 				70AA7B9617A31A590074D266 /* Tag.h */,
 				70AA7B9717A31A590074D266 /* Tag.m */,
 				70AA7AF317A061210074D266 /* zooey and kitten.jpg */,
@@ -279,12 +284,13 @@
 				70B34CB717A02B6600264262 /* LMItemDetailsViewController.m in Sources */,
 				70B34CBA17A02DAC00264262 /* LMNewItemViewController.m in Sources */,
 				70B34CBD17A02E7500264262 /* MyModel.xcdatamodeld in Sources */,
-				70AA7AE917A032F90074D266 /* Box.m in Sources */,
-				70AA7AEC17A032F90074D266 /* Item.m in Sources */,
 				70AA7AF717A2F8910074D266 /* NSSortDescriptor+Convenience.m in Sources */,
 				70AA7B8C17A301380074D266 /* NSCollections+Map.m in Sources */,
 				70AA7B9817A31A590074D266 /* Tag.m in Sources */,
 				70AA7B9B17A325C90074D266 /* NSCollections+Reduce.m in Sources */,
+				701C74E017ABC32900433064 /* Thing.m in Sources */,
+				701C74EB17ABC46D00433064 /* Box.m in Sources */,
+				701C74EC17ABC47000433064 /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
