@@ -9,7 +9,7 @@
 #import "Item.h"
 #import "Box.h"
 #import "Tag.h"
-#import "NSCollections+Map.h"
+#import <BlocksKit.h>
 
 
 @implementation Item

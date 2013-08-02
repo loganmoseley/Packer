@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11F279320ED340D2BBD9FA69 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B79363630804E028C86F484 /* libPods.a */; };
 		701C74BD17ABBDB800433064 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 701C74B517ABBDB800433064 /* Icon-Small.png */; };
 		701C74BE17ABBDB800433064 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 701C74B617ABBDB800433064 /* Icon-Small@2x.png */; };
 		701C74BF17ABBDB800433064 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 701C74B717ABBDB800433064 /* Icon-Small-50.png */; };
@@ -23,9 +24,7 @@
 		70AA7AF217A04C5A0074D266 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70AA7AF017A04C530074D266 /* CoreData.framework */; };
 		70AA7AF417A061210074D266 /* zooey and kitten.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 70AA7AF317A061210074D266 /* zooey and kitten.jpg */; };
 		70AA7AF717A2F8910074D266 /* NSSortDescriptor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7AF617A2F8910074D266 /* NSSortDescriptor+Convenience.m */; };
-		70AA7B8C17A301380074D266 /* NSCollections+Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7B8B17A301380074D266 /* NSCollections+Map.m */; };
 		70AA7B9817A31A590074D266 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7B9717A31A590074D266 /* Tag.m */; };
-		70AA7B9B17A325C90074D266 /* NSCollections+Reduce.m in Sources */ = {isa = PBXBuildFile; fileRef = 70AA7B9A17A325C90074D266 /* NSCollections+Reduce.m */; };
 		70B34C9317A0245B00264262 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9217A0245B00264262 /* UIKit.framework */; };
 		70B34C9517A0245B00264262 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9417A0245B00264262 /* Foundation.framework */; };
 		70B34C9717A0245B00264262 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B34C9617A0245B00264262 /* CoreGraphics.framework */; };
@@ -43,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18BF930D7BAA441A9A0F4BCC /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		5B79363630804E028C86F484 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		701C74B517ABBDB800433064 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		701C74B617ABBDB800433064 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		701C74B717ABBDB800433064 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -63,12 +64,8 @@
 		70AA7AF317A061210074D266 /* zooey and kitten.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "zooey and kitten.jpg"; sourceTree = "<group>"; };
 		70AA7AF517A2F8910074D266 /* NSSortDescriptor+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSortDescriptor+Convenience.h"; sourceTree = "<group>"; };
 		70AA7AF617A2F8910074D266 /* NSSortDescriptor+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSortDescriptor+Convenience.m"; sourceTree = "<group>"; };
-		70AA7B8A17A301380074D266 /* NSCollections+Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCollections+Map.h"; sourceTree = "<group>"; };
-		70AA7B8B17A301380074D266 /* NSCollections+Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCollections+Map.m"; sourceTree = "<group>"; };
 		70AA7B9617A31A590074D266 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		70AA7B9717A31A590074D266 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		70AA7B9917A325C90074D266 /* NSCollections+Reduce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCollections+Reduce.h"; sourceTree = "<group>"; };
-		70AA7B9A17A325C90074D266 /* NSCollections+Reduce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCollections+Reduce.m"; sourceTree = "<group>"; };
 		70B34C8F17A0245B00264262 /* Packer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B34C9217A0245B00264262 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		70B34C9417A0245B00264262 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -101,6 +98,7 @@
 				70B34C9517A0245B00264262 /* Foundation.framework in Frameworks */,
 				70B34C9717A0245B00264262 /* CoreGraphics.framework in Frameworks */,
 				70AA7AF217A04C5A0074D266 /* CoreData.framework in Frameworks */,
+				11F279320ED340D2BBD9FA69 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +129,7 @@
 				70B34C9817A0245B00264262 /* Packer */,
 				70B34C9117A0245B00264262 /* Frameworks */,
 				70B34C9017A0245B00264262 /* Products */,
+				18BF930D7BAA441A9A0F4BCC /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,6 +148,7 @@
 				70B34C9417A0245B00264262 /* Foundation.framework */,
 				70B34C9617A0245B00264262 /* CoreGraphics.framework */,
 				70AA7AF017A04C530074D266 /* CoreData.framework */,
+				5B79363630804E028C86F484 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,10 +188,6 @@
 				70B34C9A17A0245B00264262 /* Packer-Info.plist */,
 				70B34C9B17A0245B00264262 /* InfoPlist.strings */,
 				70B34C9E17A0245B00264262 /* main.m */,
-				70AA7B8A17A301380074D266 /* NSCollections+Map.h */,
-				70AA7B8B17A301380074D266 /* NSCollections+Map.m */,
-				70AA7B9917A325C90074D266 /* NSCollections+Reduce.h */,
-				70AA7B9A17A325C90074D266 /* NSCollections+Reduce.m */,
 				70B34CA017A0245B00264262 /* Packer-Prefix.pch */,
 				70B34CA417A0245B00264262 /* Default.png */,
 				70B34CA617A0245B00264262 /* Default@2x.png */,
@@ -207,9 +203,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 70B34CB217A0245B00264262 /* Build configuration list for PBXNativeTarget "Packer" */;
 			buildPhases = (
+				43367F3EDD0C4EF9BA3251AC /* Check Pods Manifest.lock */,
 				70B34C8B17A0245B00264262 /* Sources */,
 				70B34C8C17A0245B00264262 /* Frameworks */,
 				70B34C8D17A0245B00264262 /* Resources */,
+				790FD88E1EB245918A29700D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,6 +271,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		43367F3EDD0C4EF9BA3251AC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
+		790FD88E1EB245918A29700D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		70B34C8B17A0245B00264262 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -285,9 +314,7 @@
 				70B34CBA17A02DAC00264262 /* LMNewItemViewController.m in Sources */,
 				70B34CBD17A02E7500264262 /* MyModel.xcdatamodeld in Sources */,
 				70AA7AF717A2F8910074D266 /* NSSortDescriptor+Convenience.m in Sources */,
-				70AA7B8C17A301380074D266 /* NSCollections+Map.m in Sources */,
 				70AA7B9817A31A590074D266 /* Tag.m in Sources */,
-				70AA7B9B17A325C90074D266 /* NSCollections+Reduce.m in Sources */,
 				701C74E017ABC32900433064 /* Thing.m in Sources */,
 				701C74EB17ABC46D00433064 /* Box.m in Sources */,
 				701C74EC17ABC47000433064 /* Item.m in Sources */,
@@ -374,6 +401,7 @@
 		};
 		70B34CB317A0245B00264262 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18BF930D7BAA441A9A0F4BCC /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Packer/Packer-Prefix.pch";
@@ -385,6 +413,7 @@
 		};
 		70B34CB417A0245B00264262 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18BF930D7BAA441A9A0F4BCC /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Packer/Packer-Prefix.pch";

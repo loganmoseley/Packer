@@ -10,8 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "Item.h"
 #import "Box.h"
-#import "NSCollections+Map.h"
 #import <QuartzCore/QuartzCore.h>
+#import <BlocksKit.h>
 
 @interface LMNewItemViewController ()
 

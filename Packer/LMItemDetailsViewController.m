@@ -10,7 +10,7 @@
 #import "Item.h"
 #import "Box.h"
 #import "Tag.h"
-#import "NSCollections+Reduce.h"
+#import <BlocksKit.h>
 #import "NSSortDescriptor+Convenience.h"
 
 @interface LMItemDetailsViewController ()

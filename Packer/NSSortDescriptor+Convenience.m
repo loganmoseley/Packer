@@ -7,7 +7,7 @@
 //
 
 #import "NSSortDescriptor+Convenience.h"
-#import "NSCollections+Map.h"
+#import <BlocksKit.h>
 
 @implementation NSSortDescriptor (Convenience)
 
