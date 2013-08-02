@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LMNewItemViewController : UIViewController
+@interface LMNewItemViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @end

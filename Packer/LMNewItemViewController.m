@@ -11,21 +11,28 @@
 #import "Item.h"
 #import "Box.h"
 #import "NSCollections+Map.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface LMNewItemViewController ()
+
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) Item *item;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) id keyboardObserver;
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIButton *takeAPictureButton;
+@property (weak, nonatomic) IBOutlet UIButton *chooseAPictureButton;
+
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *packingField;
 @property (weak, nonatomic) IBOutlet UITextField *sendingField;
 @property (weak, nonatomic) IBOutlet UITextField *tagsField;
 @property (weak, nonatomic) IBOutlet UITextField *boxField;
-@property (weak, nonatomic) IBOutlet UITextView *infoInputView;
+@property (weak, nonatomic) IBOutlet UITextView  *notesView;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
 @end
 
 @implementation LMNewItemViewController
@@ -45,9 +52,13 @@
     
     self.item = [Item insertBlankItemIntoManagedObjectContext:self.managedObjectContext];
     
+    self.imageView.image = self.item.image;
+    self.takeAPictureButton.hidden = !!self.imageView.image;
+    self.chooseAPictureButton.hidden = !!self.imageView.image;
+    
     self.nameField.text     = self.item.name;
     self.boxField.text      = self.item.box.name;
-    self.infoInputView.text = self.item.notes;
+    self.notesView.text     = self.item.notes;
     
     self.packingField.text  = [self stringForDate:self.item.packingDate inCalendar:nil];
     self.sendingField.text  = [self stringForDate:self.item.sendingDate inCalendar:nil];
@@ -65,6 +76,11 @@
                              [self setContentInsetsBottom:CGRectGetHeight(keyboardFrame)];
                          }];
     self.keyboardObserver = obs;
+    
+    self.imageView.layer.masksToBounds = YES;
+    self.imageView.layer.cornerRadius = 4;
+    self.imageView.layer.borderWidth = 2;
+    self.imageView.layer.borderColor = [UIColor darkGrayColor].CGColor;
 }
 
 - (void)dealloc
@@ -75,8 +91,7 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    CGSize size = self.scrollView.frame.size;
-    self.scrollView.contentSize = CGSizeMake(size.width, size.height + 1);
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.frame), CGRectGetMaxY(self.notesView.frame) + 20);
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,7 +116,7 @@
 //  NSString *trimmedPacking = [self.packingField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *trimmedSending = [self.sendingField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *trimmedBoxName = [self.boxField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString *trimmedInfo    = [self.infoInputView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *trimmedInfo    = [self.notesView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     NSArray *fatTags = [self.tagsField.text componentsSeparatedByString:@","];
     NSArray *trimmedTags = [fatTags map:^NSString*(NSString *tag) {
@@ -112,6 +127,8 @@
     self.item.sendingDate = [NSDate dateWithTimeIntervalSinceNow:([trimmedSending doubleValue] * 60 * 60 * 24)];
     self.item.box         = [Box boxWithName:(trimmedBoxName?:@"") inManagedObjectContext:self.managedObjectContext];
     self.item.notes       = trimmedInfo;
+    
+    self.item.image = self.imageView.image;
     
     [self.item removeTags:self.item.tags];
     [self.item addTagsByTitles:[NSSet setWithArray:trimmedTags]];
@@ -169,11 +186,45 @@
     self.scrollView.scrollIndicatorInsets = scrollInset;
 }
 
+#pragma mark - Image picker delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    self.imageView.image = image;
+    self.takeAPictureButton.hidden = YES;
+    self.chooseAPictureButton.hidden = YES;
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Helpers
 
-- (IBAction)imageViewWasTouched:(id)sender
+- (IBAction)takeAPicture:(id)sender
 {
-    // launch an image picker view here
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    [picker setDelegate:self];
+    [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (IBAction)chooseAPicture:(id)sender
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    [picker setDelegate:self];
+    [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (IBAction)imageViewTapped:(id)sender
+{
+    self.imageView.image = nil;
+    self.takeAPictureButton.hidden = NO;
+    self.chooseAPictureButton.hidden = NO;
 }
 
 - (NSString *)stringForDate:(NSDate *)date inCalendar:(NSCalendar *)calendar

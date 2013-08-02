@@ -104,7 +104,7 @@
             break;
             
         case 6:
-            cell.textLabel.text = @"info";
+            cell.textLabel.text = @"notes";
             cell.detailTextLabel.text = self.item.notes;
             break;
             

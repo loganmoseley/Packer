@@ -139,7 +139,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxT-Y9-zBc"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="nxT-Y9-zBc"/>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -172,16 +172,55 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ies-kb-HyZ">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCb-CQ-z3h">
-                                        <color key="backgroundColor" white="0.86633694559999996" alpha="1" colorSpace="calibratedWhite"/>
+                                    <imageView contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCb-CQ-z3h">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="m2k-4r-bP3"/>
+                                            <constraint firstAttribute="height" constant="200" id="car-Yz-Igo"/>
                                         </constraints>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="fJc-gS-RoY" appends="YES" id="WEl-ll-1IA"/>
+                                            <outletCollection property="gestureRecognizers" destination="1cv-h8-djV" appends="YES" id="ZMG-D9-0Ie"/>
                                         </connections>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xth-rj-drx">
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="ELe-oC-LWR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="28"/>
+                                        <color key="tintColor" red="0.210659086" green="0.42634746080000002" blue="0.75" alpha="1" colorSpace="calibratedRGB"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="take a picture">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="takeAPicture:" destination="afE-cm-LvN" eventType="touchUpInside" id="Upy-2j-Yf4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToU-VO-XvA">
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="29s-hi-rK8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="28"/>
+                                        <color key="tintColor" red="0.210659086" green="0.42634746080000002" blue="0.75" alpha="1" colorSpace="calibratedRGB"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="13"/>
+                                        <state key="normal" title="choose a picture">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="chooseAPicture:" destination="afE-cm-LvN" eventType="touchUpInside" id="FLs-YH-HWJ"/>
+                                        </connections>
+                                    </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tKn-Ee-o4Y">
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
@@ -253,38 +292,44 @@
                                 <color key="backgroundColor" red="0.210659086" green="0.42634746080000002" blue="0.75" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="9BU-JG-PO5" firstAttribute="top" secondItem="5Xe-C4-3Ge" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="4NM-xV-B0P"/>
-                                    <constraint firstItem="9BU-JG-PO5" firstAttribute="trailing" secondItem="5Xe-C4-3Ge" secondAttribute="trailing" type="default" id="5kO-PF-pWV"/>
-                                    <constraint firstItem="5Xe-C4-3Ge" firstAttribute="centerX" secondItem="ies-kb-HyZ" secondAttribute="centerX" type="default" id="7q1-tp-yaG"/>
                                     <constraint firstItem="5Xe-C4-3Ge" firstAttribute="top" secondItem="tKn-Ee-o4Y" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="8GZ-SQ-oCi"/>
-                                    <constraint firstItem="kmB-hh-VOw" firstAttribute="trailing" secondItem="RR5-rb-0ih" secondAttribute="trailing" type="default" id="9jf-ex-UB1"/>
+                                    <constraint firstAttribute="trailing" secondItem="O60-GQ-LcM" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="A4T-b1-8b9"/>
                                     <constraint firstItem="kmB-hh-VOw" firstAttribute="top" secondItem="RR5-rb-0ih" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Ay8-4G-9CC"/>
+                                    <constraint firstItem="ToU-VO-XvA" firstAttribute="leading" secondItem="ies-kb-HyZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="CpG-vi-hIO"/>
+                                    <constraint firstAttribute="trailing" secondItem="xth-rj-drx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="G7i-eg-j1g"/>
                                     <constraint firstItem="Fat-Do-MoZ" firstAttribute="top" secondItem="ies-kb-HyZ" secondAttribute="top" constant="398" id="HXd-xZ-GEV"/>
                                     <constraint firstItem="RR5-rb-0ih" firstAttribute="top" secondItem="9BU-JG-PO5" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Iqe-6Y-I9z"/>
+                                    <constraint firstAttribute="trailing" secondItem="ToU-VO-XvA" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="IwV-HR-A5c"/>
+                                    <constraint firstItem="sCb-CQ-z3h" firstAttribute="centerX" secondItem="ies-kb-HyZ" secondAttribute="centerX" type="default" id="JJh-kJ-Z9X"/>
+                                    <constraint firstItem="xth-rj-drx" firstAttribute="top" secondItem="sCb-CQ-z3h" secondAttribute="top" type="default" id="Lyw-aH-aWq"/>
                                     <constraint firstItem="5Xe-C4-3Ge" firstAttribute="leading" secondItem="ies-kb-HyZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Mqa-nG-C63"/>
                                     <constraint firstItem="812-7D-B7h" firstAttribute="top" secondItem="O60-GQ-LcM" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Oj5-fr-POk"/>
                                     <constraint firstItem="9BU-JG-PO5" firstAttribute="leading" secondItem="ies-kb-HyZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="PFT-Ny-A8q"/>
                                     <constraint firstItem="O60-GQ-LcM" firstAttribute="top" secondItem="kmB-hh-VOw" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="R44-hv-ueq"/>
-                                    <constraint firstItem="sCb-CQ-z3h" firstAttribute="trailing" secondItem="tKn-Ee-o4Y" secondAttribute="trailing" type="default" id="S4b-fU-yFn"/>
+                                    <constraint firstAttribute="trailing" secondItem="9BU-JG-PO5" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="RaJ-t8-ElL"/>
+                                    <constraint firstAttribute="trailing" secondItem="sCb-CQ-z3h" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="SIQ-Q2-Bk3"/>
+                                    <constraint firstAttribute="trailing" secondItem="tKn-Ee-o4Y" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="VCc-Ro-1qN"/>
                                     <constraint firstItem="812-7D-B7h" firstAttribute="leading" secondItem="ies-kb-HyZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Vu9-hS-oRi"/>
                                     <constraint firstItem="O60-GQ-LcM" firstAttribute="leading" secondItem="ies-kb-HyZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Wjf-Bt-xaz"/>
-                                    <constraint firstItem="5Xe-C4-3Ge" firstAttribute="trailing" secondItem="tKn-Ee-o4Y" secondAttribute="trailing" type="default" id="XCg-d6-crd"/>
-                                    <constraint firstItem="O60-GQ-LcM" firstAttribute="trailing" secondItem="kmB-hh-VOw" secondAttribute="trailing" type="default" id="b4d-8A-WAd"/>
+                                    <constraint firstAttribute="trailing" secondItem="kmB-hh-VOw" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Z8O-pI-cNS"/>
+                                    <constraint firstAttribute="trailing" secondItem="812-7D-B7h" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Zk7-HF-qWm"/>
                                     <constraint firstItem="RR5-rb-0ih" firstAttribute="leading" secondItem="Fat-Do-MoZ" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="bef-Ti-FFk"/>
+                                    <constraint firstAttribute="trailing" secondItem="RR5-rb-0ih" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="c86-vq-2dH"/>
                                     <constraint firstItem="kmB-hh-VOw" firstAttribute="leading" secondItem="RR5-rb-0ih" secondAttribute="leading" type="default" id="cLM-Ig-wyK"/>
                                     <constraint firstItem="tKn-Ee-o4Y" firstAttribute="leading" secondItem="ies-kb-HyZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="cbf-5k-JAt"/>
+                                    <constraint firstItem="xth-rj-drx" firstAttribute="leading" secondItem="ies-kb-HyZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="d6q-nb-W7Y"/>
                                     <constraint firstItem="tKn-Ee-o4Y" firstAttribute="baseline" secondItem="9BU-JG-PO5" secondAttribute="baseline" type="default" id="dDd-DJ-eex"/>
+                                    <constraint firstItem="sCb-CQ-z3h" firstAttribute="bottom" secondItem="ToU-VO-XvA" secondAttribute="bottom" type="default" id="eH1-hE-IOo"/>
+                                    <constraint firstAttribute="trailing" secondItem="5Xe-C4-3Ge" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="eR4-sE-hkl"/>
                                     <constraint firstItem="Fat-Do-MoZ" firstAttribute="leading" secondItem="ies-kb-HyZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="gHD-k0-2ak"/>
-                                    <constraint firstItem="sCb-CQ-z3h" firstAttribute="top" secondItem="ies-kb-HyZ" secondAttribute="top" constant="64" id="jCk-bf-HXD"/>
                                     <constraint firstItem="EAq-0C-OCV" firstAttribute="leading" secondItem="ies-kb-HyZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="nfQ-wG-8KE"/>
                                     <constraint firstItem="tKn-Ee-o4Y" firstAttribute="baseline" secondItem="RR5-rb-0ih" secondAttribute="baseline" type="default" id="oYU-Lt-Crj"/>
                                     <constraint firstItem="tKn-Ee-o4Y" firstAttribute="top" secondItem="ies-kb-HyZ" secondAttribute="top" constant="280" id="p3M-fO-hh4"/>
                                     <constraint firstAttribute="bottom" secondItem="O60-GQ-LcM" secondAttribute="bottom" constant="57" id="pNb-M9-zy4"/>
-                                    <constraint firstItem="9BU-JG-PO5" firstAttribute="trailing" secondItem="RR5-rb-0ih" secondAttribute="trailing" type="default" id="q0h-MZ-7Rg"/>
                                     <constraint firstItem="5Xe-C4-3Ge" firstAttribute="baseline" secondItem="9BU-JG-PO5" secondAttribute="baseline" type="default" id="qUE-al-6gm"/>
-                                    <constraint firstAttribute="trailing" secondItem="sCb-CQ-z3h" secondAttribute="trailing" constant="19" id="rro-eh-qYg"/>
-                                    <constraint firstItem="O60-GQ-LcM" firstAttribute="trailing" secondItem="812-7D-B7h" secondAttribute="trailing" type="default" id="ueD-sC-CeI"/>
                                     <constraint firstItem="EAq-0C-OCV" firstAttribute="baseline" secondItem="kmB-hh-VOw" secondAttribute="baseline" type="default" id="vkg-2N-4Od"/>
                                     <constraint firstItem="sCb-CQ-z3h" firstAttribute="leading" secondItem="ies-kb-HyZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="wEX-n7-Z66"/>
+                                    <constraint firstItem="sCb-CQ-z3h" firstAttribute="top" secondItem="ies-kb-HyZ" secondAttribute="top" constant="64" id="zte-Ey-QN6"/>
                                 </constraints>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="42" maxX="0.0" maxY="0.0"/>
                             </scrollView>
@@ -350,19 +395,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </view>
                     <connections>
                         <outlet property="boxField" destination="9BU-JG-PO5" id="m0B-sO-U32"/>
+                        <outlet property="chooseAPictureButton" destination="ToU-VO-XvA" id="FJv-Od-bwR"/>
                         <outlet property="datePicker" destination="k1t-9o-IFv" id="s2y-v7-kTW"/>
-                        <outlet property="infoInputView" destination="812-7D-B7h" id="N6D-1i-s2t"/>
+                        <outlet property="imageView" destination="sCb-CQ-z3h" id="wZL-2b-2rD"/>
                         <outlet property="nameField" destination="tKn-Ee-o4Y" id="5qc-1G-dol"/>
+                        <outlet property="notesView" destination="812-7D-B7h" id="0NX-3M-LAA"/>
                         <outlet property="packingField" destination="RR5-rb-0ih" id="SuQ-dj-MRc"/>
                         <outlet property="scrollView" destination="ies-kb-HyZ" id="ABF-01-4jD"/>
                         <outlet property="sendingField" destination="kmB-hh-VOw" id="9zE-hk-U1z"/>
                         <outlet property="tagsField" destination="5Xe-C4-3Ge" id="tSk-4d-EN5"/>
+                        <outlet property="takeAPictureButton" destination="xth-rj-drx" id="Sbz-oh-aMG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ueo-yl-Rzc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="fJc-gS-RoY">
+                <tapGestureRecognizer id="1cv-h8-djV">
                     <connections>
-                        <action selector="imageViewWasTouched:" destination="afE-cm-LvN" id="ZOe-0V-aLa"/>
+                        <action selector="imageViewTapped:" destination="afE-cm-LvN" id="s3a-ka-0GA"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -376,15 +424,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="LMNewItemViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LMNewItemViewController.h"/>
             <relationships>
+                <relationship kind="action" name="chooseAPicture:"/>
+                <relationship kind="action" name="datePickerValueChanged:" candidateClass="UIDatePicker"/>
                 <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="imageViewTapped:"/>
+                <relationship kind="action" name="takeAPicture:"/>
                 <relationship kind="outlet" name="boxField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="chooseAPictureButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
-                <relationship kind="outlet" name="infoInputView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="notesView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="packingField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="sendingField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="tagsField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="takeAPictureButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="LMViewController" superclassName="UITableViewController">
