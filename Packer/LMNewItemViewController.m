@@ -220,6 +220,11 @@
 
 - (IBAction)takeAPicture:(id)sender
 {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [UIAlertView showAlertViewWithTitle:nil message:@"The camera is unavailable. You may have to allow access in your Settings app." cancelButtonTitle:@"Okay" otherButtonTitles:nil handler:nil];
+        return;
+    }
+    
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     [picker setDelegate:self];
     [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
@@ -228,9 +233,16 @@
 
 - (IBAction)chooseAPicture:(id)sender
 {
+    BOOL hasLibrary = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+    BOOL hasSavedAlbums = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    if (!hasLibrary && !hasSavedAlbums) {
+        [UIAlertView showAlertViewWithTitle:nil message:@"Photos are unavailable. You may have to allow access in your Settings app." cancelButtonTitle:@"Okay" otherButtonTitles:nil handler:nil];
+        return;
+    }
+    
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     [picker setDelegate:self];
-    [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [picker setSourceType: hasLibrary ? UIImagePickerControllerSourceTypePhotoLibrary : UIImagePickerControllerSourceTypeSavedPhotosAlbum];
     [self presentViewController:picker animated:YES completion:nil];
 }
 
