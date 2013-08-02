@@ -53,6 +53,7 @@
     self.item = [Item insertBlankItemIntoManagedObjectContext:self.managedObjectContext];
     
     self.imageView.image = self.item.image;
+    self.imageView.userInteractionEnabled = !!self.imageView.image;
     self.takeAPictureButton.hidden = !!self.imageView.image;
     self.chooseAPictureButton.hidden = !!self.imageView.image;
     
@@ -81,6 +82,15 @@
     self.imageView.layer.cornerRadius = 4;
     self.imageView.layer.borderWidth = 2;
     self.imageView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    
+    BOOL hasCamera = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    BOOL hasLibrary = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+    BOOL hasSavedAlbums = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    
+    if (!hasCamera)
+        self.takeAPictureButton.enabled = NO;
+    if (!hasLibrary || !hasSavedAlbums)
+        self.chooseAPictureButton.enabled = NO;
 }
 
 - (void)dealloc
@@ -191,9 +201,13 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    self.imageView.image = image;
-    self.takeAPictureButton.hidden = YES;
-    self.chooseAPictureButton.hidden = YES;
+    if (image)
+    {
+        self.imageView.image = image;
+        self.takeAPictureButton.hidden = YES;
+        self.chooseAPictureButton.hidden = YES;
+        self.imageView.userInteractionEnabled = YES;
+    }
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -228,6 +242,7 @@
             self.imageView.image = nil;
             self.takeAPictureButton.hidden = NO;
             self.chooseAPictureButton.hidden = NO;
+            self.imageView.userInteractionEnabled = NO;
         }
     }];
 }
