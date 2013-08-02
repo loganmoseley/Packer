@@ -28,6 +28,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    /* TestFlight */
+    
+    // !!!: Use the next line only during beta
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    [TestFlight takeOff:@"479dc6ad-41c3-4361-bad0-73fc3bea5619"];
+    
+    /* my object graph */
+    
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     LMViewController *rootViewController = [navigationController viewControllers][0];
     
