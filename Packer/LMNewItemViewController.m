@@ -222,9 +222,14 @@
 
 - (IBAction)imageViewTapped:(id)sender
 {
-    self.imageView.image = nil;
-    self.takeAPictureButton.hidden = NO;
-    self.chooseAPictureButton.hidden = NO;
+    // BlocksKit+AlertView puts the cancel button on the wrong side
+    [UIAlertView showAlertViewWithTitle:@"Clear Image?" message:@"You can set a new image." cancelButtonTitle:@"Discard" otherButtonTitles:@[@"Keep"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex == 1) {
+            self.imageView.image = nil;
+            self.takeAPictureButton.hidden = NO;
+            self.chooseAPictureButton.hidden = NO;
+        }
+    }];
 }
 
 - (NSString *)stringForDate:(NSDate *)date inCalendar:(NSCalendar *)calendar
