@@ -120,6 +120,7 @@
 				701C74BC17ABBDB800433064 /* Icon@2x.png */,
 				701C74C517ABBEBD00433064 /* iTunesArtwork.png */,
 				701C74C617ABBEBD00433064 /* iTunesArtwork@2x.png */,
+				70AA7AF317A061210074D266 /* zooey and kitten.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -173,7 +174,6 @@
 				701C74EA17ABC46700433064 /* Item.m */,
 				70AA7B9617A31A590074D266 /* Tag.h */,
 				70AA7B9717A31A590074D266 /* Tag.m */,
-				70AA7AF317A061210074D266 /* zooey and kitten.jpg */,
 				70AA7AF517A2F8910074D266 /* NSSortDescriptor+Convenience.h */,
 				70AA7AF617A2F8910074D266 /* NSSortDescriptor+Convenience.m */,
 				701C74B417ABBDA500433064 /* Resources */,
