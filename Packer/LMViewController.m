@@ -54,8 +54,8 @@
                                                        sectionNameKeyPath:@"box.name"
                                                           sortDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"box.name", @"name", @"sendingDate", @"packingDate"]]],
                              [LMSectioningDescription sectioningWithTitle:@"By Name"
-                                                       sectionNameKeyPath:@"name"
-                                                          sortDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"name", @"sendingDate", @"box.name", @"packingDate"]]],
+                                                       sectionNameKeyPath:@"nameFirstLetter"
+                                                          sortDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"nameFirstLetter", @"name", @"sendingDate", @"box.name", @"packingDate"]]],
                             ];
     self.sortingByTitleEnumerator = [self.sortingByTitle objectEnumerator];
     

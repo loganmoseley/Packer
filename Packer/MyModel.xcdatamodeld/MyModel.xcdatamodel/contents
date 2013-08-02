@@ -13,7 +13,7 @@
     </entity>
     <entity name="Thing" representedClassName="Thing" isAbstract="YES" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="nameFirstLetter" optional="YES" transient="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="nameFirstLetter" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="packingDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="picture" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -24,9 +24,9 @@
     <fetchRequest name="TagsBeginningWithTitle" entity="Tag" predicateString="title BEGINSWITH $TITLE"/>
     <fetchRequest name="TagsWithTitle" entity="Tag" predicateString="title == $TITLE"/>
     <elements>
-        <element name="Box" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Item" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Tag" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Thing" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Box" positionX="0" positionY="0" width="128" height="60"/>
+        <element name="Item" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Tag" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Thing" positionX="0" positionY="0" width="128" height="150"/>
     </elements>
 </model>
