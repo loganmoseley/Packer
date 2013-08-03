@@ -9,8 +9,6 @@
 #import "Thing.h"
 #import "Tag.h"
 
-static char kNameObservationContext;
-
 @implementation Thing
 
 @dynamic notes;
@@ -21,22 +19,19 @@ static char kNameObservationContext;
 @dynamic nameFirstLetter;
 @dynamic tags;
 
-- (void)awakeFromInsert
+- (void)setName:(NSString *)name
 {
-    [super awakeFromInsert];
-    [self addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:&kNameObservationContext];
+    [self willChangeValueForKey:@"name"];
+    [self setPrimitiveValue:name forKey:@"name"];
+    [self didChangeValueForKey:@"name"];
+    [self updateNameFirstLetterForName:name];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)updateNameFirstLetterForName:(NSString *)name
 {
-    if (context == &kNameObservationContext)
-    {
-        NSString *name = change[NSKeyValueChangeNewKey];
-        if ([name isKindOfClass:[NSString class]]) {
-            NSString *letter = name.length > 0 ? [name substringToIndex:1] : nil;
-            [self setPrimitiveValue:letter forKey:@"nameFirstLetter"];
-        }
-    }
+    NSString *letter = name.length > 0 ? [name substringToIndex:1] : nil;
+    NSString *uppercaseLetter = [letter uppercaseString];
+    [self setNameFirstLetter:uppercaseLetter];
 }
 
 @end
