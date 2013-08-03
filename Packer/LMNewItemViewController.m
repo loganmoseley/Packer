@@ -46,9 +46,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
-    if (!self.item)
-        self.item = [Item insertBlankItemIntoManagedObjectContext:self.managedObjectContext];
     
     self.imageView.image = self.item.image;
     self.imageView.userInteractionEnabled = !!self.imageView.image;
@@ -106,16 +103,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)setPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-    if (_persistentStoreCoordinator == persistentStoreCoordinator)
-        return;
-    _persistentStoreCoordinator = persistentStoreCoordinator;
-    
-//    self.managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-//    self.managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator;
 }
 
 - (IBAction)done:(id)sender

@@ -7,7 +7,6 @@
 //
 
 #import "LMViewController.h"
-#import "LMItemDetailsViewController.h"
 #import "LMNewItemViewController.h"
 #import "Item.h"
 #import "Box.h"
@@ -45,11 +44,6 @@
 {
     if (!(self = [super initWithCoder:aDecoder])) return nil;
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(managedObjectContextDidSaveNotification:)
-//                                                 name:NSManagedObjectContextDidSaveNotification
-//                                               object:nil];
-    
     self.sortingByTitle = @[ [LMSectioningDescription sectioningWithTitle:@"By Box"
                                                        sectionNameKeyPath:@"box.name"
                                                           sortDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"box.name", @"name", @"sendingDate", @"packingDate"]]],
@@ -58,6 +52,8 @@
                                                           sortDescriptors:[NSSortDescriptor sortDescriptorsForKeys:@[@"nameFirstLetter", @"name", @"sendingDate", @"box.name", @"packingDate"]]],
                             ];
     self.sortingByTitleEnumerator = [self.sortingByTitle objectEnumerator];
+    
+    self.title = @"Cancel";
     
     return self;
 }
@@ -230,7 +226,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-//    NSInteger addCell = ([tableView numberOfSections] - 1 == section) ? 1 : 0;
     return [sectionInfo numberOfObjects];
 }
 
@@ -243,11 +238,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *BasicIdentifier = @"Basic";
-    
-//    static NSString *AddIdentifier = @"Add";
-//    if ([self isLastRowInLastSection:indexPath])
-//        return [tableView dequeueReusableCellWithIdentifier:AddIdentifier forIndexPath:indexPath];
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BasicIdentifier forIndexPath:indexPath];
     
     Item *item = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -258,15 +248,9 @@
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    return ![self isLastRowInLastSection:indexPath];
-    return YES;
-}
-
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) // && ![self isLastRowInLastSection:indexPath])
+    if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         id obj = [self.fetchedResultsController objectAtIndexPath:indexPath];
         [self.managedObjectContext deleteObject:obj];
@@ -277,55 +261,23 @@
     }
 }
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-//    if ([self isLastRowInLastSection:indexPath])
-//        [Item insertPlaceholderItemIntoManagedObjectContext:self.managedObjectContext];
-}
-
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"Details"])
+    if ([segue.identifier isEqualToString:@"Add"])
     {
-        LMItemDetailsViewController *detailsController = segue.destinationViewController;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        Item *selectedItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        detailsController.item = selectedItem;
+        LMNewItemViewController *addController = segue.destinationViewController;
+        addController.item = [Item insertBlankItemIntoManagedObjectContext:self.managedObjectContext];
+        addController.managedObjectContext = self.managedObjectContext;
     }
-    else if ([segue.identifier isEqualToString:@"Details2"])
+    else if ([segue.identifier isEqualToString:@"Edit"])
     {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         LMNewItemViewController *viewController = segue.destinationViewController;
         viewController.item = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        viewController.persistentStoreCoordinator = self.managedObjectContext.persistentStoreCoordinator;
         viewController.managedObjectContext = self.managedObjectContext;
     }
-    else if ([segue.identifier isEqualToString:@"Add"])
-    {
-        LMNewItemViewController *addController = segue.destinationViewController;
-        addController.persistentStoreCoordinator = self.managedObjectContext.persistentStoreCoordinator;
-        addController.managedObjectContext = self.managedObjectContext;
-    }
-}
-
-#pragma mark - Notifications
-
-- (void)managedObjectContextDidSaveNotification:(NSNotification *)note
-{
-    NSManagedObjectContext *context = [note object];
-    if (self.managedObjectContext == context)
-        return;
-    if (self.managedObjectContext.persistentStoreCoordinator != context.persistentStoreCoordinator)
-        return;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.managedObjectContext mergeChangesFromContextDidSaveNotification:note];
-    });
 }
 
 @end
