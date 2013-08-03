@@ -1,19 +1,19 @@
 //
-//  LMNewItemViewController.m
+//  LMItemViewController.m
 //  Packer
 //
 //  Created by Logan Moseley on 7/24/13.
 //  Copyright (c) 2013 Logan Moseley. All rights reserved.
 //
 
-#import "LMNewItemViewController.h"
+#import "LMItemViewController.h"
 #import <CoreData/CoreData.h>
 #import "Item.h"
 #import "Box.h"
 #import <QuartzCore/QuartzCore.h>
 #import <BlocksKit.h>
 
-@interface LMNewItemViewController ()
+@interface LMItemViewController ()
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) id keyboardObserver;
@@ -32,7 +32,7 @@
 
 @end
 
-@implementation LMNewItemViewController
+@implementation LMItemViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

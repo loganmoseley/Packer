@@ -7,7 +7,7 @@
 //
 
 #import "LMViewController.h"
-#import "LMNewItemViewController.h"
+#import "LMItemViewController.h"
 #import "Item.h"
 #import "Box.h"
 #import "Tag.h"
@@ -267,14 +267,14 @@
 {
     if ([segue.identifier isEqualToString:@"Add"])
     {
-        LMNewItemViewController *addController = segue.destinationViewController;
+        LMItemViewController *addController = segue.destinationViewController;
         addController.item = [Item insertBlankItemIntoManagedObjectContext:self.managedObjectContext];
         addController.managedObjectContext = self.managedObjectContext;
     }
     else if ([segue.identifier isEqualToString:@"Edit"])
     {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        LMNewItemViewController *viewController = segue.destinationViewController;
+        LMItemViewController *viewController = segue.destinationViewController;
         viewController.item = [self.fetchedResultsController objectAtIndexPath:indexPath];
         viewController.managedObjectContext = self.managedObjectContext;
     }

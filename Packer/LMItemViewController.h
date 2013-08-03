@@ -1,5 +1,5 @@
 //
-//  LMNewItemViewController.h
+//  LMItemViewController.h
 //  Packer
 //
 //  Created by Logan Moseley on 7/24/13.
@@ -10,7 +10,7 @@
 
 @class Item;
 
-@interface LMNewItemViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface LMItemViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) Item *item;
 @end
