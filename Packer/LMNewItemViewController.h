@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Item;
+
 @interface LMNewItemViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) Item *item;
 @end

@@ -15,9 +15,6 @@
 
 @interface LMNewItemViewController ()
 
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) Item *item;
-
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) id keyboardObserver;
 
@@ -49,8 +46,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.item = [Item insertBlankItemIntoManagedObjectContext:self.managedObjectContext];
+        
+    if (!self.item)
+        self.item = [Item insertBlankItemIntoManagedObjectContext:self.managedObjectContext];
     
     self.imageView.image = self.item.image;
     self.imageView.userInteractionEnabled = !!self.imageView.image;
@@ -116,8 +114,8 @@
         return;
     _persistentStoreCoordinator = persistentStoreCoordinator;
     
-    self.managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    self.managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator;
+//    self.managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+//    self.managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator;
 }
 
 - (IBAction)done:(id)sender
@@ -149,7 +147,7 @@
     if (![self.managedObjectContext save:&error])
         NSLog(@"New item save error: %@", [error description]);
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Editing

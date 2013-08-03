@@ -45,10 +45,10 @@
 {
     if (!(self = [super initWithCoder:aDecoder])) return nil;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(managedObjectContextDidSaveNotification:)
-                                                 name:NSManagedObjectContextDidSaveNotification
-                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(managedObjectContextDidSaveNotification:)
+//                                                 name:NSManagedObjectContextDidSaveNotification
+//                                               object:nil];
     
     self.sortingByTitle = @[ [LMSectioningDescription sectioningWithTitle:@"By Box"
                                                        sectionNameKeyPath:@"box.name"
@@ -168,7 +168,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self.tableView reloadRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
             
         case NSFetchedResultsChangeDelete:
@@ -297,10 +297,19 @@
         Item *selectedItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
         detailsController.item = selectedItem;
     }
+    else if ([segue.identifier isEqualToString:@"Details2"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        LMNewItemViewController *viewController = segue.destinationViewController;
+        viewController.item = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        viewController.persistentStoreCoordinator = self.managedObjectContext.persistentStoreCoordinator;
+        viewController.managedObjectContext = self.managedObjectContext;
+    }
     else if ([segue.identifier isEqualToString:@"Add"])
     {
         LMNewItemViewController *addController = segue.destinationViewController;
         addController.persistentStoreCoordinator = self.managedObjectContext.persistentStoreCoordinator;
+        addController.managedObjectContext = self.managedObjectContext;
     }
 }
 
